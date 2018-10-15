@@ -1,0 +1,19 @@
+{
+  "name": "whats-playing",
+  "version": "1.0.0",
+  "description": "Find and share music with the world",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seve/whats-playing.git"
+  },
+  "author": "Severiano Badajoz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seve/whats-playing/issues"
+  },
+  "homepage": "https://github.com/seve/whats-playing#readme"
+}
