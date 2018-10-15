@@ -126,17 +126,12 @@ If the user is clicked on it will bring you to a page showing the user's feed al
     * \_id - ObjectId
     * spotifyUserID - String
     * username - String
-    * picture - String
-    * following - array of spotifyUserID
+    * following - array of ObjectIds
 
 
 * Song
     * \_id - ObjectId
     * spotifySongID - String
-    * name - String
-    * spotifyAristID - String
-    * art - String
-    * spotifyURL - String
     * userID - ObjectId
     * mentionId - ObjectId
     * privacy - Number - 0: Global, 1: Friends, 2: UsertoUser
