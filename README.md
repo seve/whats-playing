@@ -89,10 +89,7 @@ If the user is clicked on it will bring you to a page showing the user's feed al
             * User to User
 
 
----
-
-
-### External services
+#### External services
 * [Spotify API](https://developer.spotify.com/documentation/web-api/)
     * Strongly relies on Spotify Data
         * Song Details(name, artist)
@@ -102,9 +99,7 @@ If the user is clicked on it will bring you to a page showing the user's feed al
         * User Info
 
 
----
-
-### Views, View Controllers, and other Classes
+#### Views, View Controllers, and other Classes
 * **Views**
     * playing
     * user
@@ -126,7 +121,7 @@ If the user is clicked on it will bring you to a page showing the user's feed al
   * tbd
 
 
-### Data models
+#### Data models
 * User
     * \_id - ObjectId
     * spotifyUserID - String
@@ -147,28 +142,20 @@ If the user is clicked on it will bring you to a page showing the user's feed al
     * privacy - Number - 0: Global, 1: Friends, 2: UsertoUser
 
 
-### Services
-* Service 1
-    * C
-    * R
-    * U
-    * D
-
-* Service 2
-    * C
-    * R
-    * U
-    * D
-
-
+----
 
 ### MVP Milestones
 [The overall milestones of first usable build, core features, and polish are just suggestions, plan to finish earlier if possible. The last 20% of work tends to take about as much time as the first 80% so do not slack off on your milestones!]
 
 #### Sprint 1 (Day 1)
 
-* defining the MVP:
-   * Descrition goes here
+* ~~Defining the MVP:~~
+   * ~~Develop this guide~~
+   * ~~Doesn't have to completely finished~~
+* Explore the Spotify API
+* Bootstrap a basic UI
+* CRUD songs
+
 
 #### Sprint 2 (Day 2)
 _finishing a usable build_
