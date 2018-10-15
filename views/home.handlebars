@@ -1,4 +1,12 @@
 <h1>What's Playing</h1>
-{{#each songs}}
-
-{{/each}}
+<ul>
+    {{#each songs}}
+        <li>
+            <img src="{{this.album.images.[0].url}}" alt="album art" width="100" height="100">
+            "{{this.name}}" by
+            {{#each this.artists}}
+                {{this.name}}
+            {{/each}}
+        </li>
+    {{/each}}
+</ul>

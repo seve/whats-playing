@@ -153,7 +153,7 @@ If the user is clicked on it will bring you to a page showing the user's feed al
    * ~~Develop this guide~~
    * ~~Doesn't have to completely finished~~
 * ~~Setup environment~~
-* Explore the Spotify API
+* ~Explore the Spotify API~
 * Bootstrap a basic UI
 * CRUD songs
 
