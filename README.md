@@ -44,38 +44,107 @@ If the user is clicked on it will bring you to a page showing the user's feed al
 
 
 #### Screens
+* __What's Playing__
+    * The landing page
+    * If not logged in, shows a info panel
+    * Shows a feed of all friends if signed in, if not shows global feed.
+    * *Actions*
+        * Login/Sign Up
+        * Share new song
+        * View own User Profile
+        * Switch to friends/global feed
 
+
+* __Feed__
+    * Shows a chronological list of Shared Songs
+
+
+* __Shared Song__
+    * Shows cover art, song name, artist name, username, and optionally a mentioned user
+    * *Actions*
+        * Preview song
+        * View on Spotify
+        * View User Profile
+
+
+* __User Profile__
+    * Shows profile information
+        * Profile picture
+        * Bio
+        * Favorite Artists
+    * Shows User Feed
+    * *Actions*
+        * User to User Share
+        * Follow
+        * Go back to What's Playing
+
+
+* __Share New Song__
+    * *Actions*
+        * Search for song
+        * Mention a user
+        * Choose privacy
+            * Global
+            * Friends
+            * User to User
+
+
+---
 
 
 ### External services
-List which APIs or external services will your app use?
-*
+* [Spotify API](https://developer.spotify.com/documentation/web-api/)
+    * Strongly relies on Spotify Data
+        * Song Details(name, artist)
+        * Song Preview
+        * Song Search
+        * User Authentication/Log in
+        * User Info
 
+
+---
 
 ### Views, View Controllers, and other Classes
 * **Views**
-  list all views you will need
+    * playing
+    * user
+    * login
+    * sign-up
+    * share
+    * _Partials_
+        * feed
+        * song-details
+
 
 * **View Controllers**
+    * song
+    * user
+    * feed
 
-  list all view controllers you will need
 
 * **Other Classes**
-  list any other classes you will need
+  * tbd
 
 
 ### Data models
+* User
+    * \_id - ObjectId
+    * spotifyUserID - String
+    * username - String
+    * picture - String
+    * following - array of spotifyUserID
 
-list all data models your app will need
-* Model 1
-    * property 1
-    * property 2
-    * property 3
 
-* Model 2
-    * property 1
-    * property 2
-    * property 3
+* Song
+    * \_id - ObjectId
+    * spotifySongID - String
+    * name - String
+    * spotifyAristID - String
+    * art - String
+    * spotifyURL - String
+    * userID - ObjectId
+    * mentionId - ObjectId
+    * privacy - Number - 0: Global, 1: Friends, 2: UsertoUser
 
 
 ### Services
