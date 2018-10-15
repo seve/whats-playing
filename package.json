@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/seve/whats-playing/issues"
   },
-  "homepage": "https://github.com/seve/whats-playing#readme"
+  "homepage": "https://github.com/seve/whats-playing#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "spotify-web-api-node": "^4.0.0"
+  }
 }
