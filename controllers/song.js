@@ -20,7 +20,8 @@ spotifyAPI.clientCredentialsGrant().then(
 
 module.exports = (app) => {
     app.get('/', (req, res) => {
-        console.log(req.cookies);
+        let currentUser = req.user;
+
         // Find all songs with global privacy, grab the songID and sort by the date created
         Song.find({
                 privacy: 0
@@ -36,12 +37,15 @@ module.exports = (app) => {
                     .then((songs) => {
                         res.render('home', {
                             songs: songs.body.tracks,
+                            currentUser
                         })
                     }, (err) => {
                         console.error(err);
-                        res.render('home')
-                    })
-            })
+                        res.render('home', {
+                            currentUser
+                        });
+                    });
+            });
     });
 
     app.get('/search', (req, res) => {
@@ -67,12 +71,16 @@ module.exports = (app) => {
     })
 
     app.post('/share', (req, res) => {
-        Song.create(req.body).then((song) => {
-            console.log("Created:", req.body.spotifySongID);
-            res.redirect('/');
-        }).catch((err) => {
-            console.error(err);
-        });
+        if (req.user) {
+            Song.create(req.body).then((song) => {
+                console.log("Created:", req.body.spotifySongID);
+                res.redirect('/');
+            }).catch((err) => {
+                console.error(err);
+            });
+        } else {
+            return res.status(401);
+        }
     });
 
     app.delete('/share/:spotifySongID', (req, res) => {
