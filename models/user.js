@@ -29,7 +29,12 @@ const UserSchema = new Schema({
         type: String,
         trim: true,
         required: false,
-    }
+    },
+    shares: [{
+        type: Schema.Types.ObjectId,
+        required:false,
+        ref: 'Song',
+    }]
 });
 
 UserSchema.pre('save', function(next) {
