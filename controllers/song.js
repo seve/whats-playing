@@ -36,15 +36,17 @@ module.exports = (app) => {
                 // Grab tracks with id via spotifyAPI
                 spotifyAPI.getTracks(songIDs)
                     .then((songs) => {
-                        for(let i = 0; i < data.length; i++) {
-                            console.log("SONG:", songs.body.tracks[i]);
-                            console.log("USERID:", data[i].userID);
+                        for (let i = 0; i < data.length; i++) {
                             songs.body.tracks[i].userID = data[i].userID;
-                            console.log("AFTER ADDING:", songs.body.tracks[i]);
                         }
                         res.render('home', {
                             songs: songs.body.tracks,
-                            currentUser
+                            currentUser: currentUser,
+                            helpers: {
+                                ifEquals: function(arg1, arg2, options) {
+                                    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+                                }
+                            }
                         })
                     }, (err) => {
                         console.error(err);
@@ -94,18 +96,24 @@ module.exports = (app) => {
         }
     });
 
-    app.delete('/share/:spotifySongID', (req, res) => {
-        console.log("User:", req.user._id, "Trying to delete song with spotifySongID:", req.params.spotifySongID);
-        Song.deleteOne({
-                spotifySongID: req.params.spotifySongID
-            })
-            .then((song) => {
-                if (song.n == 1) {
-                    console.log("Destroyed:", req.params.spotifySongID);
-                }
-                res.status(200).send(song);
-            }).catch((err) => {
-                res.status(400).send(err);
-            })
+    app.delete('/share', (req, res) => {
+        console.log(req.user);
+        if (req.user && req.user._id === req.query.userID) {
+            console.log("User:", req.query.userID, "Trying to delete song with spotifySongID:", req.query.spotifySongID);
+            Song.deleteOne({
+                    spotifySongID: req.query.spotifySongID,
+                    userID: req.query.userID
+                })
+                .then((song) => {
+                    if (song.n == 1) {
+                        console.log("Destroyed:", req.query.spotifySongID);
+                    }
+                    res.status(200).send(song);
+                }).catch((err) => {
+                    res.status(400).send(err);
+                })
+        } else {
+            return res.status(401);
+        }
     })
 };

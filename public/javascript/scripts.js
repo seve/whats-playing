@@ -4,7 +4,14 @@ document.querySelector('.feed').addEventListener("click", (e) => {
     if (elem.className == "delete-button") {
         e.preventDefault();
         const spotifySongID = elem.dataset.spotifySongId;
-        axios.delete(`/share/${spotifySongID}`)
+        const userID = elem.dataset.userId;
+        axios.delete(`/share`, {
+                params: {
+                    spotifySongID: spotifySongID,
+                    userID: userID
+                }
+
+            })
             .then((res) => {
                 elem.parentNode.style.display = 'none';
             })

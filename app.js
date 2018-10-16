@@ -17,7 +17,6 @@ app.use(cookieParser());
 
 
 const checkAuth = (req, res, next) => {
-    console.log("Checking auth");
     if (typeof req.cookies.whatsPlayingToken === 'undefined' || req.cookies.whatsPlayingToken === null) {
         req.user = null;
     } else {
