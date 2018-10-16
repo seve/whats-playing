@@ -20,10 +20,10 @@ const UserSchema = new Schema({
         required: true,
         select: false,
     },
-    following: {
-        type: [UserSchema],
+    following: [{
+        type: Schema.Types.ObjectId,
         required: false,
-    },
+    }],
     spotifyUserID: {
         type: String,
         trim: true,
@@ -42,5 +42,12 @@ UserSchema.pre('save', function(next) {
         });
     });
 });
+
+
+UserSchema.methods.comparePassword = function(password, done) {
+    bcrypt.compare(password, this.password, (err, isMatch) => {
+        done(err, isMatch);
+    });
+};
 
 module.exports = mongoose.model('User', UserSchema);
