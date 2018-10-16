@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
+app.use(express.static('public'));
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'

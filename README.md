@@ -152,7 +152,7 @@ If the user is clicked on it will bring you to a page showing the user's feed al
 * CRUD songs
     * ~Create~
     * ~Read~
-    * Destroy
+    * ~Destroy~
 
 
 #### Sprint 2 (Day 2)

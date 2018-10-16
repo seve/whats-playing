@@ -10,13 +10,11 @@ module.exports = (app, spotifyAPI) => {
                 for(const val of data) {
                     songIDs.push(val['spotifySongID']);
                 }
-
-                console.log("songIDs:", songIDs);
                 // Grab tracks with id via spotifyAPI
                 spotifyAPI.getTracks(songIDs)
                     .then((songs) => {
                         res.render('home', {
-                            songs: songs.body.tracks
+                            songs: songs.body.tracks,
                         })
                     }, (err) => {
                         console.error(err);
@@ -26,7 +24,7 @@ module.exports = (app, spotifyAPI) => {
     });
 
     app.get('/search', (req, res) => {
-        console.log(req.query.term);
+        console.log("Searching Spotify for", req.query.term);
         spotifyAPI.searchTracks(req.query.term)
             .then((data) => {
                 res.render('songs', {
@@ -48,10 +46,23 @@ module.exports = (app, spotifyAPI) => {
 
     app.post('/share', (req, res) => {
         Song.create(req.body).then((song) => {
-            console.log("Shared song:", req.body.spotifySongID);
+            console.log("Created:", req.body.spotifySongID);
             res.redirect('/');
         }).catch((err) => {
             console.error(err);
         });
     });
+
+    app.delete('/share/:spotifySongID', (req, res) => {
+        console.log("Trying to delete song with spotifySongID:", req.params.spotifySongID);
+        Song.deleteOne({ spotifySongID: req.params.spotifySongID})
+        .then((song) => {
+            if(song.n == 1) {
+                console.log("Destroyed:", req.params.spotifySongID);
+            }
+            res.status(200).send(song);
+        }).catch((err) => {
+            res.status(400).send(err);
+        })
+    })
 };
