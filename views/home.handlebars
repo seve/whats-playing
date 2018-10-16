@@ -1,12 +1,17 @@
-<a href="/logout">Logout</a>
-<a href="/login">Login</a>
-<a href="/signup">Sign Up</a>
+{{#if currentUser}}
+    <a href="/logout">Logout</a>
+{{else}}
+    <a href="/login">Login</a>
+    <a href="/signup">Sign Up</a>
+{{/if}}
 
 <h1>What's Playing</h1>
-<form action="/search" method="GET">
-    <input type="search" autocomplete="off" name="term" class="form-control mr-sm-2" placeholder="Search for Song">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add Song</button>
-</form>
+{{#if currentUser}}
+    <form action="/search" method="GET">
+        <input type="search" autocomplete="off" name="term" class="form-control mr-sm-2" placeholder="Search for Song">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add Song</button>
+    </form>
+{{/if}}
 <div class="feed">
     {{#each songs}}
         <div class="share">
