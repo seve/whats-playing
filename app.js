@@ -10,17 +10,31 @@ const jwt = require('jsonwebtoken');
 const app = express();
 app.use(express.static('public'));
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(cookieParser());
+
+
+const checkAuth = (req, res, next) => {
+    console.log("Checking auth");
+    if (typeof req.cookies.whatsPlayingToken === 'undefined' || req.cookies.whatsPlayingToken === null) {
+        req.user = null;
+    } else {
+        const token = req.cookies.whatsPlayingToken;
+        const decodedToken = jwt.decode(token, { complete: true }) || {};
+        req.user = decodedToken.payload;
+    }
+
+    next();
+}
+
+app.use(checkAuth);
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
-
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use(cookieParser());
 
 mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/whats-playing', { useNewUrlParser: true });
 
@@ -29,11 +43,10 @@ const PORT = process.env.PORT || 3000;
 const song = require('./controllers/song.js');
 const auth = require('./controllers/auth.js');
 
+
+
 song(app);
 auth(app);
-
-
-
 
 
 app.listen(3000, () => {

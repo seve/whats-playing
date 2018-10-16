@@ -1,4 +1,5 @@
 const Song = require('../models/song.js');
+const User = require('../models/user.js');
 const spotifyWebApi = require('spotify-web-api-node');
 
 const SPOTIFY_SECRET = process.env.SPOTIFY_SECRET;
@@ -25,7 +26,7 @@ module.exports = (app) => {
         // Find all songs with global privacy, grab the songID and sort by the date created
         Song.find({
                 privacy: 0
-            }).sort('-_id')
+            }).sort('-_id').populate('userID')
             .then((data) => {
                 // With the data extract the song IDs
                 const songIDs = [];
@@ -35,6 +36,12 @@ module.exports = (app) => {
                 // Grab tracks with id via spotifyAPI
                 spotifyAPI.getTracks(songIDs)
                     .then((songs) => {
+                        for(let i = 0; i < data.length; i++) {
+                            console.log("SONG:", songs.body.tracks[i]);
+                            console.log("USERID:", data[i].userID);
+                            songs.body.tracks[i].userID = data[i].userID;
+                            console.log("AFTER ADDING:", songs.body.tracks[i]);
+                        }
                         res.render('home', {
                             songs: songs.body.tracks,
                             currentUser
@@ -62,7 +69,6 @@ module.exports = (app) => {
         spotifyAPI.getTrack(req.params.id)
             .then((data) => {
                 res.render('share-form', {
-                    userID: req.cookies,
                     song: data.body
                 });
             }, (err) => {
@@ -72,8 +78,13 @@ module.exports = (app) => {
 
     app.post('/share', (req, res) => {
         if (req.user) {
-            Song.create(req.body).then((song) => {
-                console.log("Created:", req.body.spotifySongID);
+            const song = new Song(req.body);
+            song.userID = req.user._id;
+            song.save().then((song) => {
+                return User.findById(req.user._id)
+            }).then((user) => {
+                user.shares.unshift(song);
+                user.save();
                 res.redirect('/');
             }).catch((err) => {
                 console.error(err);
@@ -84,7 +95,7 @@ module.exports = (app) => {
     });
 
     app.delete('/share/:spotifySongID', (req, res) => {
-        console.log("Trying to delete song with spotifySongID:", req.params.spotifySongID);
+        console.log("User:", req.user._id, "Trying to delete song with spotifySongID:", req.params.spotifySongID);
         Song.deleteOne({
                 spotifySongID: req.params.spotifySongID
             })

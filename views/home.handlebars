@@ -20,6 +20,7 @@
             {{#each this.artists}}
                 {{this.name}}
             {{/each}}
+            Shared by {{this.userID.username}}
             <button class="delete-button" data-spotify-song-id={{this.id}} type="button" name="delete">Delete</button>
             <hr>
         </div>
