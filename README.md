@@ -145,11 +145,14 @@ If the user is clicked on it will bring you to a page showing the user's feed al
 #### Sprint 1 (Day 1)
 
 * ~~Defining the MVP:~~
-   * ~~Develop this guide~~
-   * ~~Doesn't have to completely finished~~
+    * ~~Develop this guide~~
+    * ~~Doesn't have to completely finished~~
 * ~~Setup environment~~
 * ~Explore the Spotify API~
 * CRUD songs
+    * ~Create~
+    * ~Read~
+    * Destroy
 
 
 #### Sprint 2 (Day 2)
