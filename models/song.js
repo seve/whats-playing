@@ -6,6 +6,15 @@ const songSchema = mongoose.Schema({
         type: String,
         required: true
     },
+
+    userID: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    mentionID: {
+        type: Schema.Types.ObjectId,
+        required: false
+    },
     privacy: {
         type: Number,
         default: 0

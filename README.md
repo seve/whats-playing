@@ -124,16 +124,18 @@ If the user is clicked on it will bring you to a page showing the user's feed al
 #### Data models
 * User
     * \_id - ObjectId
-    * spotifyUserID - String
     * username - String
+    * email - String
+    * password - Hashed String
     * following - array of ObjectIds
+    * spotifyUserID - String
 
 
 * Song
     * \_id - ObjectId
     * spotifySongID - String
     * userID - ObjectId
-    * mentionId - ObjectId
+    * mentionID - ObjectId
     * privacy - Number - 0: Global, 1: Friends, 2: UsertoUser
 
 
