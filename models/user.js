@@ -23,6 +23,7 @@ const UserSchema = new Schema({
     following: [{
         type: Schema.Types.ObjectId,
         required: false,
+        ref: 'User',
     }],
     spotifyUserID: {
         type: String,

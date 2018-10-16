@@ -9,11 +9,13 @@ const songSchema = mongoose.Schema({
 
     userID: {
         type: Schema.Types.ObjectId,
-        required: true
+        required: true,
+        ref: 'User'
     },
     mentionID: {
         type: Schema.Types.ObjectId,
-        required: false
+        required: false,
+        ref: 'User'
     },
     privacy: {
         type: Number,
