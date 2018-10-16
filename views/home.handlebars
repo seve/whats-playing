@@ -1,12 +1,13 @@
 <h1>What's Playing</h1>
-<ul>
-    {{#each songs}}
-        <li>
-            <img src="{{this.album.images.[0].url}}" alt="album art" width="100" height="100">
-            "{{this.name}}" by
-            {{#each this.artists}}
-                {{this.name}}
-            {{/each}}
-        </li>
+<form action="/search" method="GET">
+    <input type="search" autocomplete="off" name="term" class="form-control mr-sm-2" placeholder="Search for Song">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add Song</button>
+</form>
+{{#each songs}}
+    <img src="{{this.album.images.[0].url}}" alt="album art" width="100" height="100">
+    "{{this.name}}" by
+    {{#each this.artists}}
+        {{this.name}}
     {{/each}}
-</ul>
+    <hr>
+{{/each}}

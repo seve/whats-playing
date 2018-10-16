@@ -12,4 +12,9 @@ const songSchema = mongoose.Schema({
     }
 });
 
+songSchema.virtual('created').get(() => {
+  if (this["_created"]) return this["_created"];
+  return this["_created"] = this._id.getTimestamp();
+});
+
 module.exports = mongoose.model('Song', songSchema);

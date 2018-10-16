@@ -2,11 +2,20 @@ require('dotenv').config();
 const express = require('express');
 const exphbs = require('express-handlebars');
 const spotifyWebApi = require('spotify-web-api-node');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/whats-playing', { useNewUrlParser: true });
 
 const PORT = process.env.PORT || 3000;
 const SPOTIFY_SECRET = process.env.SPOTIFY_SECRET;
@@ -19,16 +28,17 @@ const spotifyAPI = new spotifyWebApi({
 });
 
 spotifyAPI.clientCredentialsGrant().then(
-  function(data) {
+  (data) => {
+    console.log('The access token is ' + data.body['access_token']);
     spotifyAPI.setAccessToken(data.body['access_token']);
+    song(app, spotifyAPI);
   },
   function(err) {
-    console.log('Something went wrong when retrieving an access token', err);
+    console.log('Something went wrong!', err);
   }
 );
 
 
-song(app);
 
 
 app.listen(3000, () => {

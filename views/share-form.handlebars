@@ -1,0 +1,8 @@
+<h1>{{song.name}}</h1>
+{{#each song.artists}}
+    <h2>{{this.name}}</h2>
+{{/each}}
+<form class="" action="/share" method="post">
+    <input type="text" name="spotifySongID" hidden value="{{song.id}}">
+    <button type="submit" name="share">Share</button>
+</form>
