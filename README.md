@@ -156,8 +156,15 @@ If the user is clicked on it will bring you to a page showing the user's feed al
 
 
 #### Sprint 2 (Day 2)
-_finishing a usable build_
-* [goals for the day]
+_Implementing Users_
+* Explore BCrypt
+* Explore Spotify Credentials
+* CRUD user
+    * Create
+    * Read
+    * Update
+    * Destroy
+
 
 #### Sprint 3 (Day 3)
 * [goals for the day]
