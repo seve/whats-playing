@@ -17,11 +17,12 @@ module.exports = (app) => {
                 spotifyAPI.getTracks(songIDs)
                     .then((songs) => {
                         for (let i = 0; i < data.length; i++) {
-                            songs.body.tracks[i].userID = data[i].userID;
+                            songs.body.tracks[i].user = data[i].userID;
                         }
                         res.render('home', {
                             songs: songs.body.tracks,
-                            currentUser: currentUser
+                            currentUser: currentUser,
+                            profile: false,
                         })
                     }, (err) => {
                         console.error(err);

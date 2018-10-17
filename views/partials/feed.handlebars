@@ -5,12 +5,11 @@
         {{#each this.artists}}
             {{this.name}}
         {{/each}}
-        {{! TODO: Make the username not show if this is being shown on a user profile}}
-        {{#if this.userID}}
-            <a href="/user/{{this.userID.username}}">Shared by {{this.userID.username}}</a>
-        {{/if}}
-        {{#ifEquals ../currentUser._id this.userID._id}}
-            <button class="delete-button" data-spotify-song-id={{this.id}} data-user-id={{this.userID._id}} type="button" name="delete">Delete</button>
+        {{#unless ../profile}}
+            <a href="/user/{{this.user.username}}">Shared by {{this.user.username}}</a>
+        {{/unless}}
+        {{#ifEquals ../currentUser._id this.user._id}}
+            <button class="delete-button" data-spotify-song-id={{this.id}} data-user-id={{this.user._id}} type="button" name="delete">Delete</button>
         {{/ifEquals}}
         <hr>
     </div>

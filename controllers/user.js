@@ -10,14 +10,18 @@ module.exports = (app) => {
             }).populate('shares')
             .then((user) => {
                 const songIDs = user.shares.map(a => a.spotifySongID);
-                console.log(user.shares);
                 spotifyAPI.getTracks(songIDs)
                     .then((songs) => {
-                        console.log("Found User's Shares:", songs);
+                        for (let i = 0; i < songs.body.tracks.length; ++i) {
+                            songs.body.tracks[i].user = user;
+                        }
+
+
                         res.render('user-profile', {
                             songs: songs.body.tracks,
                             currentUser: currentUser,
-                            user: user
+                            user: user,
+                            profile: true,
                         });
                     }, (err) => {
                         console.error(err);

@@ -1,2 +1,7 @@
-<h1>{{user.username}}'s Profile</h1>
+<h1>What {{user.username}}'s Playing</h1>
+{{#ifEquals currentUser._id user._id}}
+    <button type="button" name="button">Edit Profile</button>
+    {{else}}
+        <button type="button" name="button">Follow</button>
+{{/ifEquals}}
 {{> feed}}
