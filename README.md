@@ -167,7 +167,7 @@ _Implementing Users_
 #### Sprint 3 (Day 3)
 _Continue CRUDing Users_
 * ~Finish creating user view~
-* Allow for updating username
+* ~Allow for updating username~
 * Create a button on main page for updating profile
 * Figure out how to host images
 * Add profile picture / set to a default
