@@ -162,7 +162,7 @@ _Implementing Users_
 * Explore BCrypt
 * Explore Spotify Credentials
 * CRUD user
-    * Create
+    * ~Create~
     * Read
     * Update
     * Destroy
