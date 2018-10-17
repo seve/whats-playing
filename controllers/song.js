@@ -12,10 +12,7 @@ module.exports = (app) => {
             }).sort('-_id').populate('userID')
             .then((data) => {
                 // With the data extract the song IDs
-                const songIDs = [];
-                for (const val of data) {
-                    songIDs.push(val['spotifySongID']);
-                }
+                const songIDs = data.map(a => a.spotifySongID);
                 // Grab tracks with id via spotifyAPI
                 spotifyAPI.getTracks(songIDs)
                     .then((songs) => {
