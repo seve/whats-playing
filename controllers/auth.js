@@ -8,6 +8,7 @@ module.exports = (app) => {
         });
     });
 
+    // TODO: Double check password
     app.post('/signup', (req, res) => {
         const user = new User(req.body);
 
@@ -95,6 +96,10 @@ module.exports = (app) => {
             res.status(401);
         }
     });
+
+    // TODO: Better editing expereince
+    // TODO: Require password for chaning username/email
+    // TODO: Ask if want to change password, require old password
 
     app.post('/edit-profile', (req, res) => {
         let currentUser = req.user;

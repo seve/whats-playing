@@ -168,13 +168,15 @@ _Implementing Users_
 _Continue CRUDing Users_
 * ~Finish creating user view~
 * ~Allow for updating username~
-* Create a button on main page for updating profile
-* Figure out how to host images
-* Add profile picture / set to a default
+* ~Create a button on main page for updating profile~
+* Figure out identicon
+* Add profile picture via identicon
 * Add room for a short about me
 
 #### Sprint4 (Day 4)
-* [goals for the day, should be finishing all core features]
+* Require password for changing username/email
+* Ask if want to change password, require old password
+* Double check password when signing up
 
 #### Sprint 5 (Day 5)
 _starting the polish_
