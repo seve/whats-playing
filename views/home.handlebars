@@ -20,7 +20,7 @@
             {{#each this.artists}}
                 {{this.name}}
             {{/each}}
-            Shared by {{this.userID.username}}
+            <a href="/user/{{this.userID.username}}">Shared by {{this.userID.username}}</a>
             {{#ifEquals ../currentUser._id this.userID._id}}
                 <button class="delete-button" data-spotify-song-id={{this.id}} data-user-id={{this.userID._id}} type="button" name="delete">Delete</button>
             {{/ifEquals}}

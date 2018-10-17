@@ -41,12 +41,13 @@ const PORT = process.env.PORT || 3000;
 
 const song = require('./controllers/song.js');
 const auth = require('./controllers/auth.js');
+const user = require('./controllers/user.js')
 
 
 
 song(app);
 auth(app);
-
+user(app);
 
 app.listen(3000, () => {
     console.log('Listening on port: ' + PORT);
