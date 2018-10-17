@@ -21,12 +21,7 @@ module.exports = (app) => {
                         }
                         res.render('home', {
                             songs: songs.body.tracks,
-                            currentUser: currentUser,
-                            helpers: {
-                                ifEquals: function(arg1, arg2, options) {
-                                    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-                                }
-                            }
+                            currentUser: currentUser
                         })
                     }, (err) => {
                         console.error(err);

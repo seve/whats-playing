@@ -17,12 +17,7 @@ module.exports = (app) => {
                         res.render('user-profile', {
                             songs: songs.body.tracks,
                             currentUser: currentUser,
-                            user: user,
-                            helpers: {
-                                ifEquals: function(arg1, arg2, options) {
-                                    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-                                }
-                            }
+                            user: user
                         });
                     }, (err) => {
                         console.error(err);
