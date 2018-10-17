@@ -151,7 +151,7 @@ If the user is clicked on it will bring you to a page showing the user's feed al
     * ~~Doesn't have to completely finished~~
 * ~~Setup environment~~
 * ~Explore the Spotify API~
-* CRUD songs
+* ~CRUD songs~
     * ~Create~
     * ~Read~
     * ~Destroy~
@@ -159,8 +159,7 @@ If the user is clicked on it will bring you to a page showing the user's feed al
 
 #### Sprint 2 (Day 2)
 _Implementing Users_
-* Explore BCrypt
-* Explore Spotify Credentials
+* ~Explore BCrypt~
 * CRUD user
     * ~Create~
     * Read
@@ -169,7 +168,13 @@ _Implementing Users_
 
 
 #### Sprint 3 (Day 3)
-* [goals for the day]
+_Continue CRUDing Users_
+* Finish creating user view
+* Figure out how to host images
+* Add profile picture / set to a default
+* Add room for a short about me
+* Simultaneously begin providing a means for updating a Profile
+
 
 #### Sprint4 (Day 4)
 * [goals for the day, should be finishing all core features]
