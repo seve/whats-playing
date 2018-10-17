@@ -32,10 +32,12 @@ const UserSchema = new Schema({
     },
     shares: [{
         type: Schema.Types.ObjectId,
-        required:false,
+        required: false,
         ref: 'Song',
     }]
 });
+
+
 
 UserSchema.pre('save', function(next) {
     if (!this.isModified('password')) {
@@ -49,11 +51,12 @@ UserSchema.pre('save', function(next) {
     });
 });
 
-
 UserSchema.methods.comparePassword = function(password, done) {
     bcrypt.compare(password, this.password, (err, isMatch) => {
         done(err, isMatch);
     });
 };
+
+
 
 module.exports = mongoose.model('User', UserSchema);

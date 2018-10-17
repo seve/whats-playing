@@ -21,6 +21,7 @@ module.exports = (app) => {
                 maxAge: 900000,
                 httpOnly: true
             });
+            console.log("Create User:", user._id);
             res.redirect('/');
         }).catch((err) => {
             console.error(err);
@@ -100,30 +101,48 @@ module.exports = (app) => {
         const username = req.body.username;
         const password = req.body.password;
         const email = req.body.email;
-        console.log(username, password, email);
 
         res.clearCookie('whatsPlayingToken');
-        // TODO: Find how to this properly (non-depricated)
-        User.findOneAndUpdate( currentUser._id , {
-                username: username,
-                password: password,
-                email: email
-            }).then((user) => {
-            const token = jwt.sign({
-                _id: user._id
-            }, process.env.HASH_SECRET, {
-                expiresIn: "60 days"
-            });
-            res.cookie('whatsPlayingToken', token, {
-                maxAge: 900000,
-                httpOnly: true
-            });
-            res.redirect('/');
-        }).catch((err) => {
-            console.error(err);
-            return res.status(400).send({
-                err: err
-            });
-        });
+
+        console.log(currentUser._id);
+
+        User.findById(currentUser._id)
+            .then((user) => {
+                if (username) {
+                    user.set({
+                        username: username
+                    });
+                }
+                if (password) {
+                    user.set({
+                        password: password
+                    });
+                }
+                if (email) {
+                    user.set({
+                        email: email
+                    });
+                }
+
+                user.save().then((user) => {
+                    console.log("Updated user:", user._id);
+                    const token = jwt.sign({
+                        _id: user._id
+                    }, process.env.HASH_SECRET, {
+                        expiresIn: "60 days"
+                    });
+                    res.cookie('whatsPlayingToken', token, {
+                        maxAge: 900000,
+                        httpOnly: true
+                    });
+                    res.redirect('/');
+                }).catch((err) => {
+                    console.error(err);
+                    return res.status(400).send({
+                        err: err
+                    });
+                });
+            })
+
     });
-};
+}
