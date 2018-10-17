@@ -162,19 +162,16 @@ _Implementing Users_
 * ~Explore BCrypt~
 * CRUD user
     * ~Create~
-    * Read
-    * Update
-    * Destroy
 
 
 #### Sprint 3 (Day 3)
 _Continue CRUDing Users_
-* Finish creating user view
+* ~Finish creating user view~
+* Allow for updating username
+* Create a button on main page for updating profile
 * Figure out how to host images
 * Add profile picture / set to a default
 * Add room for a short about me
-* Simultaneously begin providing a means for updating a Profile
-
 
 #### Sprint4 (Day 4)
 * [goals for the day, should be finishing all core features]
