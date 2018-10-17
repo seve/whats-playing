@@ -1,12 +1,16 @@
-<form class="signup-form" action="/signup" method="post">
-    <label for="username">Username</label>
-    <input type="text" name="username" value="">
+{{#ifEquals action "Sign Up"}}
+    <form class="signup-form" action="/signup" method="post">
+        {{else}}
+            <form class="edit-form" action="/edit-profile" method="post">
+{{/ifEquals}}
+<label for="username">Username</label>
+<input type="text" name="username" value="{{currentUser.username}}">
 
-    <label for="email">Email</label>
-    <input type="email" name="email" value="">
+<label for="email">Email</label>
+<input type="email" name="email" value="{{currentUser.email}}">
 
-    <label for="password">Password</label>
-    <input type="password" name="password" value="">
+<label for="password">Password</label>
+<input type="password" name="password" value="">
 
-    <button type="submit" name="button">Sign Up</button>
+<button type="submit" name="button">{{action}}</button>
 </form>

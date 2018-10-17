@@ -4,7 +4,7 @@ const spotifyAPI = require('../lib/spotify.js');
 
 module.exports = (app) => {
     app.get('/user/:username', (req, res) => {
-        let currentUser = req.user;
+        const currentUser = req.user;
         User.findOne({
                 username: req.params.username
             }).populate('shares')
@@ -39,6 +39,8 @@ module.exports = (app) => {
 
             }).catch((err) => {
                 console.error(err);
-            })
-    })
+            });
+    });
+
+    
 }
