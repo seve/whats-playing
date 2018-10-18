@@ -171,7 +171,7 @@ _Continue CRUDing Users_
 * ~Create a button on main page for updating profile~
 * ~Figure out identicon~
 * ~Add profile picture via identicon~
-* Add name feature
+* ~Add name feature~
 * Add room for a short about me
 
 #### Sprint4 (Day 4)
