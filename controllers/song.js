@@ -75,7 +75,7 @@ module.exports = (app) => {
     app.delete('/share', (req, res) => {
         console.log(req.user);
         if (req.user && req.user._id === req.query.userID) {
-            console.log("User:", req.query.userID, "Trying to delete song with spotifySongID:", req.query.spotifySongID);
+            
             Song.deleteOne({
                     spotifySongID: req.query.spotifySongID,
                     userID: req.query.userID
@@ -89,6 +89,7 @@ module.exports = (app) => {
                     res.status(400).send(err);
                 })
         } else {
+            console.log("User:", req.query.userID, "tried to delete song with spotifySongID:", req.query.spotifySongID);
             return res.status(401);
         }
     })

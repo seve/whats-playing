@@ -106,6 +106,7 @@ module.exports = (app) => {
         const username = req.body.username;
         const password = req.body.password;
         const email = req.body.email;
+        const name = req.body.name;
 
         res.clearCookie('whatsPlayingToken');
 
@@ -126,6 +127,11 @@ module.exports = (app) => {
                 if (email) {
                     user.set({
                         email: email
+                    });
+                }
+                if (name) {
+                    user.set({
+                        name: name
                     });
                 }
 

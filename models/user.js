@@ -25,6 +25,11 @@ const UserSchema = new Schema({
         required: false,
         ref: 'User',
     }],
+    name: {
+        type: String,
+        trim: true,
+        required: false,
+    },
     spotifyUserID: {
         type: String,
         trim: true,
@@ -43,6 +48,9 @@ UserSchema.pre('save', function(next) {
     if (!this.isModified('password')) {
         return next();
     }
+
+    this.name = this.name || username;
+
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.password, salt, (err, hash) => {
             this.password = hash;
