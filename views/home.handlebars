@@ -15,6 +15,17 @@
 
 <h1>What's Playing</h1>
 
-<div class="feed">
-    {{> feed}}
+<h2>Global</h2>
+<div class="global-feed">
+    {{> feed songs=globalSongs}}
+</div>
+<hr>
+<h2>Following</h2>
+<div class="following-feed">
+    {{> feed songs=followingSongs}}
+</div>
+<hr>
+<h2>Personal</h2>
+<div class="personal-feed">
+    {{> feed songs=personalSongs}}
 </div>

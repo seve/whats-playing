@@ -6,31 +6,127 @@ module.exports = (app) => {
     app.get('/', (req, res) => {
         let currentUser = req.user;
 
-        // Find all songs with global privacy, grab the songID and sort by the date created
-        Song.find({
-                privacy: 0
-            }).sort('-_id').populate('userID')
-            .then((data) => {
-                // With the data extract the song IDs
-                const songIDs = data.map(a => a.spotifySongID);
-                // Grab tracks with id via spotifyAPI
-                spotifyAPI.getTracks(songIDs)
-                    .then((songs) => {
-                        for (let i = 0; i < data.length; i++) {
-                            songs.body.tracks[i].user = data[i].userID;
+        let followedUsers = [];
+
+        let globalSongData = [];
+        let followingSongData = [];
+        let personalSongData = [];
+
+        let songPromises = [];
+
+        // Only find this info if logged in
+        if (currentUser) {
+            // Grab the user's info population their followed users and that users shares
+            songPromises.push(User.findById(currentUser._id)
+                .populate({
+                    path: 'following',
+                    populate: {
+                        path: 'shares'
+                    }
+                })
+                .then((user) => {
+                    followedUsers = user.following;
+                    // Grab the shared songs from followedUser and put them into an array
+                    followingSongData = followedUsers.reduce((result, user) => {
+                        if (user.shares[0]) {
+                            result.push(...user.shares);
                         }
-                        res.render('home', {
-                            songs: songs.body.tracks,
-                            currentUser: currentUser,
-                            profile: false,
-                        })
-                    }, (err) => {
-                        console.error(err);
-                        res.render('home', {
-                            currentUser
-                        });
+                        return result;
+                    }, []);
+                    // Sort that array by _id (creation)
+                    followingSongData.sort((a, b) => {
+                        return (a._id > b._id) ? 1 : ((b._id > a._id) ? -1 : 0);
                     });
-            });
+
+                }).catch((err) => {
+                    console.log("Error looking up followed users", err);
+                }))
+
+            // Grab songs where current user is mentioned
+            songPromises.push(Song.find({
+                    mentionID: currentUser._id
+                }).sort('-_id')
+                .populate('userID')
+                .populate('mentionID')
+                .then((data) => {
+                    personalSongData = data;
+                })
+                .catch((err) => {
+                    console.error(err);
+                }));
+        }
+        // Find all songs with global privacy, populate the songID and mentionID, and sort by the date created
+        songPromises.push(Song.find({
+                privacy: 0
+            }).sort('-_id')
+            .populate('userID')
+            .populate('mentionID')
+            .then((data) => {
+                globalSongData = data;
+            })
+            .catch((err) => {
+                console.error(err);
+            }));
+
+        let allSongData = [];
+
+        Promise.all(songPromises).then(() => {
+            console.log("============================");
+            console.log("FOLLOWING SONG DATA:", followingSongData)
+            console.log("============================");
+            console.log("GLOBAL SONG DATA:", globalSongData);
+            console.log("============================");
+            console.log("PERSONAL SONG DATA:", personalSongData);
+            console.log("============================");
+
+            allSongData = followingSongData.concat(globalSongData, personalSongData);
+
+            // With the data extract the song IDs
+            const songIDs = allSongData.map(a => a.spotifySongID);
+            // Grab tracks with id via spotifyAPI
+            spotifyAPI.getTracks(songIDs)
+                .then((songs) => {
+                    let globalSongs = [];
+                    let followingSongs = [];
+                    let personalSongs = [];
+                    for (let i = 0; i < allSongData.length; i++) {
+                        // Append backend data to songs
+                        songs.body.tracks[i].user = allSongData[i].userID;
+                        songs.body.tracks[i].mention = allSongData[i].mentionID;
+                        songs.body.tracks[i].privacy = allSongData[i].privacy;
+
+                        const followingLength = followingSongData.length;
+                        const globalLength = globalSongData.length;
+
+                        // Put songs in respective feeds
+                        if (i < followingLength) {
+                            followingSongs.push(songs.body.tracks[i]);
+                        } else if (i < globalSongData.length + followingLength) {
+                            globalSongs.push(songs.body.tracks[i]);
+                        } else {
+                            personalSongs.push(songs.body.tracks[i]);
+                        }
+                    }
+
+
+                    res.render('home', {
+                        followingSongs,
+                        globalSongs,
+                        personalSongs,
+                        currentUser: currentUser,
+                        profile: false,
+                    });
+                }).catch((err) => {
+                    console.error(err);
+                    res.render('home', {
+                        // followingSongs,
+                        // globalSongs,
+                        // personalSongs,
+                        currentUser: currentUser,
+                        profile: false,
+                    });
+                });
+        });
     });
 
     app.get('/search', (req, res) => {
@@ -75,7 +171,7 @@ module.exports = (app) => {
     app.delete('/share', (req, res) => {
         console.log(req.user);
         if (req.user && req.user._id === req.query.userID) {
-            
+
             Song.deleteOne({
                     spotifySongID: req.query.spotifySongID,
                     userID: req.query.userID

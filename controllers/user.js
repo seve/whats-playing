@@ -57,11 +57,11 @@ module.exports = (app) => {
         console.log("Trying to follow:", req.body.user);
         User.findById(req.user._id)
             .then((user) => {
-                user.following.unshift(req.body.user);
+                user.following.addToSet(req.body.user);
                 user.save().then((user) => {
                     User.findById(req.body.user)
                         .then((user2) => {
-                            user.followers.unshift(req.user._id);
+                            user.followers.addToSet(req.user._id);
                             user.save().then((user) => {
                                 console.log("User:", user._id, "followed user:", req.body.user);
                             }).catch((err) => {

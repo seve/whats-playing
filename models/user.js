@@ -26,13 +26,13 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: false,
         ref: 'User',
-        unique: true,
+        unique: false,
     }],
     followers: [{
         type: Schema.Types.ObjectId,
         required: false,
         ref: 'User',
-        unique: true,
+        unique: false,
     }],
     name: {
         type: String,

@@ -1,3 +1,6 @@
+{{#unless songs}}
+<h4>Nothing here :( Follow your friends!</h4>
+{{/unless}}
 {{#each songs}}
     <div class="share">
         <img src="{{this.album.images.[0].url}}" alt="album art" width="100" height="100">
@@ -6,7 +9,7 @@
             {{this.name}}
         {{/each}}
         {{#unless ../profile}}
-            <a href="/user/{{this.user.username}}">Shared by {{this.user.username}}</a>
+            Shared by <a href="/user/{{this.user.username}}">{{this.user.username}}</a> to {{#if this.mention}}<a href="/user/{{this.mention.username}}">{{this.mention.username}}</a>{{else}}the World{{/if}}
         {{/unless}}
         {{#ifEquals ../currentUser._id this.user._id}}
             <button class="delete-button" data-spotify-song-id={{this.id}} data-user-id={{this.user._id}} type="button" name="delete">Delete</button>

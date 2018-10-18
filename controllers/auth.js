@@ -11,7 +11,6 @@ module.exports = (app) => {
     // TODO: Double check password
     app.post('/signup', (req, res) => {
         const user = new User(req.body);
-
         user.save().then((user) => {
             const token = jwt.sign({
                 _id: user._id
