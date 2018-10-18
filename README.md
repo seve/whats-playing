@@ -172,12 +172,18 @@ _Continue CRUDing Users_
 * ~Figure out identicon~
 * ~Add profile picture via identicon~
 * ~Add name feature~
-* Add room for a short about me
+* ~Bio~ __SCRAP THIS FOR LATER__
+* ~Add ability to follow~
 
-#### Sprint4 (Day 4)
+#### Sprint 4 (Day 4)
+
+* Add follow feed
+* Add mention ability
+* Add p2p feed
 * Require password for changing username/email
 * Ask if want to change password, require old password
 * Double check password when signing up
+
 
 #### Sprint 5 (Day 5)
 _starting the polish_

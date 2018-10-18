@@ -11,7 +11,11 @@ module.exports = (app) => {
             }).populate('shares')
             .then((user) => {
                 const songIDs = user.shares.map(a => a.spotifySongID);
-                const gravatarImg = gravatar.url(user.email, {s: '175', r: 'r', d: 'retro'}, false);
+                const gravatarImg = gravatar.url(user.email, {
+                    s: '175',
+                    r: 'r',
+                    d: 'retro'
+                }, false);
 
                 spotifyAPI.getTracks(songIDs)
                     .then((songs) => {
@@ -49,5 +53,25 @@ module.exports = (app) => {
             });
     });
 
-
+    app.post('/follow', (req, res) => {
+        console.log("Trying to follow:", req.body.user);
+        User.findById(req.user._id)
+            .then((user) => {
+                user.following.unshift(req.body.user);
+                user.save().then((user) => {
+                    User.findById(req.body.user)
+                        .then((user2) => {
+                            user.followers.unshift(req.user._id);
+                            user.save().then((user) => {
+                                console.log("User:", user._id, "followed user:", req.body.user);
+                            }).catch((err) => {
+                                console.error(err);
+                                return res.status(400).send({
+                                    err: err
+                                });
+                            });
+                        })
+                })
+            })
+    })
 }

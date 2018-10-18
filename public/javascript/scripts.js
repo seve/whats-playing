@@ -20,3 +20,34 @@ document.querySelector('.feed').addEventListener("click", (e) => {
             });
     }
 });
+
+document.querySelector('.follow-button').addEventListener("click", (e) => {
+    const elem = e.target;
+    const user = elem.dataset.userId;
+
+    if (elem.innerText == "Follow") {
+        axios.post(`/follow`, {
+                user: user
+            })
+            .then((res) => {
+                elem.innerText = "Unfollow";
+                elem.classList.add("unfollow-button")
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    } else {
+        axios.post(`/unfollow`, {
+                params: {
+                    user: user
+                }
+            })
+            .then((res) => {
+                elem.innerText = "Follow";
+                elem.classList.add("follow-button")
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
+})

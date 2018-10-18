@@ -3,7 +3,7 @@
 {{#ifEquals currentUser._id user._id}}
     <a href="/edit-profile/{{user._id}}">Edit Profile</a>
     {{else}}
-        <button type="button" name="button">Follow</button>
+        <button class="follow-button" data-user-id="{{user._id}}" type="button"> Follow</button>
 {{/ifEquals}}
 
 <h1>What {{user.name}} is Playing</h1>

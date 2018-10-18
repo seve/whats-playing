@@ -8,11 +8,13 @@ const UserSchema = new Schema({
         type: String,
         trim: true,
         required: true,
+        unique: true,
     },
     email: {
         type: String,
         trim: true,
         required: true,
+        unique: true,
     },
     password: {
         type: String,
@@ -24,6 +26,13 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: false,
         ref: 'User',
+        unique: true,
+    }],
+    followers: [{
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: 'User',
+        unique: true,
     }],
     name: {
         type: String,
@@ -34,6 +43,7 @@ const UserSchema = new Schema({
         type: String,
         trim: true,
         required: false,
+        unique: true,
     },
     shares: [{
         type: Schema.Types.ObjectId,
@@ -49,7 +59,7 @@ UserSchema.pre('save', function(next) {
         return next();
     }
 
-    this.name = this.name || username;
+    this.name = this.name || this.username;
 
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.password, salt, (err, hash) => {
