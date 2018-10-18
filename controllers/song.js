@@ -33,6 +33,15 @@ module.exports = (app) => {
                         }
                         return result;
                     }, []);
+
+                    // Remove any private shares
+                    followingSongData = followingSongData.filter((song) => {
+                        if(song.privacy == 2) {
+                            return false;
+                        }
+                        return true;
+                    })
+
                     // Sort that array by _id (creation)
                     followingSongData.sort((a, b) => {
                         return (a._id > b._id) ? 1 : ((b._id > a._id) ? -1 : 0);
@@ -70,6 +79,7 @@ module.exports = (app) => {
 
         let allSongData = [];
 
+        // Wait for all database queries to be completed
         Promise.all(songPromises).then(() => {
             console.log("============================");
             console.log("FOLLOWING SONG DATA:", followingSongData)

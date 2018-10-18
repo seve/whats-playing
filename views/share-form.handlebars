@@ -3,6 +3,19 @@
     <h2>{{this.name}}</h2>
 {{/each}}
 <form class="" action="/share" method="post">
+    <div>
+        <input type="radio" name="privacy" id="global" value="0">
+        <label for="global">Global</label>
+    </div>
+    <div>
+        <input type="radio" name="privacy" id="followers" value="1">
+        <label for="followers">Followers</label>
+    </div>
+    <div>
+        <input type="radio" name="privacy" id="private" value="2">
+        <label for="private">Private</label>
+    </div>
+
     <input type="text" name="spotifySongID" hidden value="{{song.id}}">
     <button type="submit" name="share">Share</button>
 </form>
