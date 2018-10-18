@@ -1,7 +1,9 @@
-<h1>What {{user.username}}'s Playing</h1>
+<img src="{{avatar}}" alt="avatar">
 {{#ifEquals currentUser._id user._id}}
     <a href="/edit-profile/{{user._id}}">Edit Profile</a>
     {{else}}
         <button type="button" name="button">Follow</button>
 {{/ifEquals}}
+
+<h1>What {{user.username}}'s Playing</h1>
 {{> feed}}
