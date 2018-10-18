@@ -9,7 +9,7 @@
             {{this.name}}
         {{/each}}
         {{#unless ../profile}}
-            Shared by <a href="/user/{{this.user.username}}">{{this.user.username}}</a> to {{#if this.mention}}<a href="/user/{{this.mention.username}}">{{this.mention.username}}</a>{{else}}the World{{/if}}
+            Shared by <a href="/user/{{this.user.username}}">{{this.user.username}}</a> to {{#if this.mention}}<a href="/user/{{this.mention.username}}">{{this.mention.username}}</a>{{else}}{{#ifEquals this.privacy 0}}the World{{else}}their Followers{{/ifEquals}}{{/if}}
         {{/unless}}
         {{#ifEquals ../currentUser._id this.user._id}}
             <button class="delete-button" data-spotify-song-id={{this.id}} data-user-id={{this.user._id}} type="button" name="delete">Delete</button>
