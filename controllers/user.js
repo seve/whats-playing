@@ -10,6 +10,16 @@ module.exports = (app) => {
                 username: req.params.username
             }).populate('shares')
             .then((user) => {
+                // Remove any private shares
+                if (req.user._id != user._id) {
+                    user.shares = user.shares.filter((song) => {
+                        if (song.privacy == 2) {
+                            return false;
+                        }
+                        return true;
+                    })
+                }
+
                 const songIDs = user.shares.map(a => a.spotifySongID);
                 const gravatarImg = gravatar.url(user.email, {
                     s: '175',

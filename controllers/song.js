@@ -21,7 +21,10 @@ module.exports = (app) => {
                 .populate({
                     path: 'following',
                     populate: {
-                        path: 'shares'
+                        path: 'shares',
+                        populate: {
+                            path: 'userID'
+                        }
                     }
                 })
                 .then((user) => {
@@ -90,6 +93,7 @@ module.exports = (app) => {
             console.log("============================");
 
             allSongData = followingSongData.concat(globalSongData, personalSongData);
+            console.log(allSongData);
 
             // With the data extract the song IDs
             const songIDs = allSongData.map(a => a.spotifySongID);
@@ -111,7 +115,7 @@ module.exports = (app) => {
                         // Put songs in respective feeds
                         if (i < followingLength) {
                             followingSongs.push(songs.body.tracks[i]);
-                        } else if (i < globalSongData.length + followingLength) {
+                        } else if (i < globalLength + followingLength) {
                             globalSongs.push(songs.body.tracks[i]);
                         } else {
                             personalSongs.push(songs.body.tracks[i]);
