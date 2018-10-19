@@ -142,14 +142,14 @@ header {
     font-size: 1em;
     height: 48px;
     text-align: center;
-    border: #1d1b29 3px solid;
+    border: #DA3E41 3px solid;
     margin: 0;
     padding: 0;
     outline: none;
 }
 
 .search-btn {
-    background: #1d1b29;
+    background: #DA3E41;
     border: none;
     color: #fff;
     margin: 0;
@@ -228,7 +228,7 @@ header {
 
 .user, .mention {
     font-weight: 700;
-    opacity: .6;
+    color: #DA3E41;
 }
 
 .right-container {
@@ -344,6 +344,7 @@ header {
     border-radius: 6px;
     font-size: 1.8em;
     color: #2e2c41;
+    background: #DA3E41;
     font-weight: bolder;
     align-self: center;
 }
@@ -432,7 +433,7 @@ header {
 
 .share-info {
     margin: 8px 0px 8px 0px;
-    width: 20%;
+    width: 35%;
     height: 124px;
     background-color: #38344F;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
