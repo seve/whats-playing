@@ -66,9 +66,9 @@ if (feedContainer) {
 
 if (followButton) {
     if (followButton.dataset.following) {
-        followButton.innerText = "Unfollow";
-        followButton.classList.remove("follow-button");
-        followButton.classList.add("unfollow-button");
+        followButton.innerText = "Following";
+        followButton.classList.remove("unfollow-button");
+        followButton.classList.add("follow-button");
     }
     followButton.addEventListener("click", (e) => {
 

@@ -20,9 +20,6 @@ module.exports = (app) => {
                 if (!currentUser || currentUser._id != user._id) {
                     following = currentUser && user.followers.map(follower => follower.toString()).includes(currentUser._id);
                     user.shares = user.shares.filter((song) => {
-                        console.log("Privacy:", song.privacy);
-                        console.log("mentionID:", song.mentionID);
-                        console.log("currentUser:", currentUser);
                         if (!currentUser || song.privacy == 2 && song.mentionID._id != currentUser._id) {
                             return false;
                         }
@@ -44,7 +41,6 @@ module.exports = (app) => {
                             songs.body.tracks[i].user = user;
                             songs.body.tracks[i].mention = mentionIDs[i];
                         }
-
 
                         res.render('user-profile', {
                             songs: songs.body.tracks,
