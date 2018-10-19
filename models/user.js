@@ -55,12 +55,8 @@ UserSchema.pre('save', function(next) {
 
     this.name = this.name || this.username;
 
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(this.password, salt, (err, hash) => {
-            this.password = hash;
-            next();
-        });
-    });
+    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10), null);
+    next();
 });
 
 UserSchema.methods.comparePassword = function(password, done) {
