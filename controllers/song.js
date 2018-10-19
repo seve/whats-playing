@@ -39,7 +39,7 @@ module.exports = (app) => {
 
                     // Remove any private shares
                     followingSongData = followingSongData.filter((song) => {
-                        if(song.privacy == 2) {
+                        if (song.privacy == 2) {
                             return false;
                         }
                         return true;
@@ -156,13 +156,20 @@ module.exports = (app) => {
     app.get('/share/:id', (req, res) => {
         spotifyAPI.getTrack(req.params.id)
             .then((data) => {
-                res.render('share-form', {
-                    song: data.body
+                User.find().then((users) => {
+                    console.log(users);
+                    res.render('share-form', {
+                        song: data.body,
+                        users,
+                        currentUser: req.user
+                    });
+                }).catch((err) => {
+                    console.error(err);
                 });
-            }, (err) => {
+            }).catch((err) => {
                 console.error(err);
             });
-    })
+    });
 
     app.post('/share', (req, res) => {
         if (req.user) {

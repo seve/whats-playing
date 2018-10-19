@@ -15,6 +15,15 @@
         <input type="radio" name="privacy" id="private" value="2">
         <label for="private">Private</label>
     </div>
+    <label for="mentionID">Mention a User</label>
+    <select id="mentionID" name="mentionID">
+        {{#each users}}
+            {{#ifEquals this._id ../currentUser._id}}
+            {{else}}
+                <option value="{{this._id}}">{{this.username}}</option>
+            {{/ifEquals}}
+        {{/each}}
+    </select>
 
     <input type="text" name="spotifySongID" hidden value="{{song.id}}">
     <button type="submit" name="share">Share</button>
