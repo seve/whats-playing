@@ -116,7 +116,7 @@ module.exports = (app) => {
                         }
                     }
 
-
+                    if(currentUser) {
                     res.render('home', {
                         followingSongs,
                         globalSongs,
@@ -124,6 +124,14 @@ module.exports = (app) => {
                         currentUser: currentUser,
                         profile: false,
                     });
+                } else {
+                    res.render('landing-page', {
+                        globalSongs,
+                        currentUser,
+                        profile: false,
+                    });
+                }
+
                 }).catch((err) => {
                     console.error(err);
                     res.render('home', {

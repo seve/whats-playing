@@ -179,14 +179,17 @@ _Continue CRUDing Users_
 
 * ~Add follow feed~
 * ~Add mention ability~
-* ~Add p2p feed~
-* Make it beautiful
-    * Start working on front end
-    * Figure out tab system
+* ~Add p2p feed~~
+* ~Make it beautiful
+    * ~Start working on front end~
+    * ~Figure out tab system~
 
 
 #### Sprint 5 (Day 5)
 _starting the polish_
+* Landing Page for non-logged in
+
+#### Future
 * Add user search
 * Require password for changing username/email
 * Ask if want to change password, require old password

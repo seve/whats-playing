@@ -1,0 +1,24 @@
+<header>
+    <div class="account">
+        <a href="/login">Login</a>
+        •
+        <a href="/signup">Sign Up</a>
+    </div>
+
+    <h1 class="greating">What's Playing</h1>
+
+</header>
+
+<div class="landing-page-container">
+    <h4 class="about">Connect, share, and discover music with friends.
+        Start your journey by signing up, or see what people are sharing below.</h4>
+
+    <form action="/signup">
+        <button class="submit-btn signup" type="button" name="button">Sign Up</button>
+    </form>
+
+</div>
+
+<div class="feed">
+    {{>feed songs=globalSongs}}
+</div>
