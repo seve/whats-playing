@@ -180,12 +180,14 @@ _Continue CRUDing Users_
 * ~Add follow feed~
 * ~Add mention ability~
 * ~Add p2p feed~
-* Add user search
-* Require password for changing username/email
-* Ask if want to change password, require old password
-* Double check password when signing up
+* Make it beautiful
+    * Start working on front end
+    * Figure out tab system
 
 
 #### Sprint 5 (Day 5)
 _starting the polish_
-* [goals for the day]
+* Add user search
+* Require password for changing username/email
+* Ask if want to change password, require old password
+* Double check password when signing up
