@@ -2,6 +2,7 @@ body {
     background: rgba(46, 44, 65, 1.0);
     margin: 0;
     color: #FFF;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
 }
 
@@ -216,8 +217,16 @@ header {
 
 .delete-button {
     background: none;
-    border: none;
-    fill: #f00;
-    width: 24px;
+    color: #ffff;
+    border: 2px #b52f2f solid;
+    font-weight: bold;
+    border-radius: 3px;
+    width: 80px;
+    height: 32px;
     padding: 0;
+    transition: all .25s;
+}
+
+.delete-button:hover {
+    background: #b52f2f;
 }
