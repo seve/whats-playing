@@ -1,7 +1,15 @@
-{{#each songs}}
-    <a href="/share/{{this.id}}">
-        <h4>{{this.name}}</h4>
-        <h5>{{this.artists.[0].name}}</h5>
-    </a>
-    <hr>
-{{/each}}
+<a class="login-back" href="/">Back</a>
+<div class="results">
+    {{#each songs}}
+        <a class="song-result" href="/share/{{this.id}}">
+            <img src="{{this.album.images.[0].url}}" alt="album art" width="124" height="124">
+
+            <div class="details">
+                <div class="song-info">
+                    <div class="song-name">{{this.name}}</div>
+                    <div class="artist">{{this.artists.[0].name}}</div>
+                </div>
+            </div>
+        </a>
+    {{/each}}
+</div>

@@ -84,9 +84,9 @@ module.exports = (app) => {
 
         // Wait for all database queries to be completed
         Promise.all(songPromises).then(() => {
-            console.log("FOLLOWING SONG DATA:", followingSongData, "============================");
-            console.log("GLOBAL SONG DATA:", globalSongData, "============================");
-            console.log("PERSONAL SONG DATA:", personalSongData, "============================");
+            // console.log("FOLLOWING SONG DATA:", followingSongData, "============================");
+            // console.log("GLOBAL SONG DATA:", globalSongData, "============================");
+            // console.log("PERSONAL SONG DATA:", personalSongData, "============================");
             allSongData = followingSongData.concat(globalSongData, personalSongData);
 
             // With the data extract the song IDs
