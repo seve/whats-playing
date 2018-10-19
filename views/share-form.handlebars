@@ -1,31 +1,45 @@
-<h1>{{song.name}}</h1>
-{{#each song.artists}}
-    <h2>{{this.name}}</h2>
-{{/each}}
-<form class="" action="/share" method="post">
-    <div>
-        <input type="radio" name="privacy" id="global" value="0">
-        <label for="global">Global</label>
-    </div>
-    <div>
-        <input type="radio" name="privacy" id="followers" value="1">
-        <label for="followers">Followers</label>
-    </div>
-    <div>
-        <input type="radio" name="privacy" id="private" value="2">
-        <label for="private">Private</label>
-    </div>
-    <label for="mentionID">Mention a User</label>
-    <select id="mentionID" name="mentionID">
-        <option value=""></option>
-        {{#each users}}
-            {{#ifEquals this._id ../currentUser._id}}
-            {{else}}
-                <option value="{{this._id}}">{{this.username}}</option>
-            {{/ifEquals}}
-        {{/each}}
-    </select>
+<div class="share-form-container">
+    <a class="share-info" href="/share/{{this.id}}">
+        <img src="{{song.album.images.[0].url}}" alt="album art" width="124" height="124">
 
-    <input type="text" name="spotifySongID" hidden value="{{song.id}}">
-    <button type="submit" name="share">Share</button>
-</form>
+        <div class="details">
+            <div class="song-info">
+                <div class="song-name">{{song.name}}</div>
+                <div class="artist">{{song.artists.[0].name}}</div>
+            </div>
+        </div>
+    </a>
+    <form class="share-form" action="/share" method="post">
+        <div class="privacy">
+            <div class="privacy-label">
+                Who do you want to share to?
+            </div>
+            <div>
+                <input type="radio" name="privacy" id="global" value="0" checked>
+                <label for="global">Global</label>
+            </div>
+            <div>
+                <input type="radio" name="privacy" id="followers" value="1">
+                <label for="followers">Followers</label>
+            </div>
+            <div>
+                <input type="radio" name="privacy" id="private" value="2">
+                <label for="private">Private</label>
+            </div>
+        </div>
+        <div class="mention-holder">
+            <label for="mentionID">Want to mention someone?</label>
+            <select id="mentionID" name="mentionID">
+                <option value=""></option>
+                {{#each users}}
+                    {{#ifEquals this._id ../currentUser._id}}
+                {{else}}
+                    <option value="{{this._id}}">{{this.username}}</option>
+                    {{/ifEquals}}
+                {{/each}}
+            </select>
+            </div>
+        <input type="text" name="spotifySongID" hidden value="{{song.id}}">
+        <button class="submit-btn"type="submit" name="share">Share</button>
+    </form>
+    </div>

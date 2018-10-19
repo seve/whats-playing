@@ -4,6 +4,7 @@ body {
     color: #FFF;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 /* MAIN PAGE */
@@ -120,6 +121,7 @@ header {
     right: 100vw;
     transition: 750ms;
     margin-top: 16px;
+    overflow-x: hidden;
 }
 
 .search {
@@ -175,11 +177,13 @@ header {
     align-items: center;
     width: 100vw;
     margin: auto;
+    overflow-x: hidden;
 }
 
 .share {
     margin: 8px 0px 8px 0px;
     width: 45%;
+    max-width: 760px ;
     height: 124px;
     background-color: #38344F;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
@@ -340,6 +344,7 @@ header {
     font-size: 1.8em;
     color: #2e2c41;
     font-weight: bolder;
+    align-self: center;
 }
 
 /* Login */
@@ -411,4 +416,63 @@ header {
     justify-content: flex-start;
     align-items: stretch;
     border-radius: 3px;
+}
+
+/* SHARE INFO */
+
+.share-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.share-info {
+    margin: 8px 0px 8px 0px;
+    width: 20%;
+    height: 124px;
+    background-color: #38344F;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    padding: 8px 8px 8px 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-radius: 3px;
+}
+
+
+.share-form {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    line-height: 2.5em;
+}
+
+.privacy {
+    background: #38344F;
+    padding: 16px;
+    border-radius: 8px;
+    align-items: center;
+}
+.mention-holder {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+label[for="mentionID"] {
+    text-align: center;
+}
+
+#mentionID {
+    height: 2em;
+    width: 80%;
+
 }
