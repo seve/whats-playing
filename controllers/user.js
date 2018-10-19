@@ -8,21 +8,29 @@ module.exports = (app) => {
         const currentUser = req.user;
         User.findOne({
                 username: req.params.username
-            }).populate('shares')
+            }).populate({
+                path: 'shares',
+                populate: {
+                    path: 'mentionID'
+                }
+            })
             .then((user) => {
                 var following = false;
                 // Remove any private shares and check to see if current user is following
-                if (currentUser && currentUser._id != user._id) {
-                    following = user.followers.map(follower=>follower.toString()).includes(currentUser._id);
+                if (!currentUser || currentUser._id != user._id) {
+                    following = currentUser && user.followers.map(follower => follower.toString()).includes(currentUser._id);
                     user.shares = user.shares.filter((song) => {
-                        if (song.privacy == 2 && song.mentionID != currentUser._id) {
+                        console.log("Privacy:", song.privacy);
+                        console.log("mentionID:", song.mentionID);
+                        console.log("currentUser:", currentUser);
+                        if (!currentUser || song.privacy == 2 && song.mentionID._id != currentUser._id) {
                             return false;
                         }
                         return true;
                     })
                 }
 
-
+                const mentionIDs = user.shares.map(a => a.mentionID);
                 const songIDs = user.shares.map(a => a.spotifySongID);
                 const gravatarImg = gravatar.url(user.email, {
                     s: '175',
@@ -34,6 +42,7 @@ module.exports = (app) => {
                     .then((songs) => {
                         for (let i = 0; i < songs.body.tracks.length; ++i) {
                             songs.body.tracks[i].user = user;
+                            songs.body.tracks[i].mention = mentionIDs[i];
                         }
 
 

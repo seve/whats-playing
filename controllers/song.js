@@ -173,7 +173,8 @@ module.exports = (app) => {
             }
 
             if(req.body.mentionID != "") {
-                params[mentionID] = req.body.mentionID;
+                console.log(req.body);
+                params.mentionID = req.body.mentionID;
             }
 
 
