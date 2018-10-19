@@ -17,6 +17,7 @@
     </div>
     <label for="mentionID">Mention a User</label>
     <select id="mentionID" name="mentionID">
+        <option value=""></option>
         {{#each users}}
             {{#ifEquals this._id ../currentUser._id}}
             {{else}}

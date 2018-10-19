@@ -39,12 +39,6 @@ const UserSchema = new Schema({
         trim: true,
         required: false,
     },
-    spotifyUserID: {
-        type: String,
-        trim: true,
-        required: false,
-        unique: true,
-    },
     shares: [{
         type: Schema.Types.ObjectId,
         required: false,

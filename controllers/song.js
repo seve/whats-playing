@@ -84,14 +84,9 @@ module.exports = (app) => {
 
         // Wait for all database queries to be completed
         Promise.all(songPromises).then(() => {
-            console.log("============================");
-            console.log("FOLLOWING SONG DATA:", followingSongData)
-            console.log("============================");
-            console.log("GLOBAL SONG DATA:", globalSongData);
-            console.log("============================");
-            console.log("PERSONAL SONG DATA:", personalSongData);
-            console.log("============================");
-
+            console.log("FOLLOWING SONG DATA:", followingSongData, "============================");
+            console.log("GLOBAL SONG DATA:", globalSongData, "============================");
+            console.log("PERSONAL SONG DATA:", personalSongData, "============================");
             allSongData = followingSongData.concat(globalSongData, personalSongData);
             console.log(allSongData);
 
@@ -157,7 +152,6 @@ module.exports = (app) => {
         spotifyAPI.getTrack(req.params.id)
             .then((data) => {
                 User.find().then((users) => {
-                    console.log(users);
                     res.render('share-form', {
                         song: data.body,
                         users,
@@ -173,7 +167,18 @@ module.exports = (app) => {
 
     app.post('/share', (req, res) => {
         if (req.user) {
-            const song = new Song(req.body);
+
+            var params = {
+                privacy: req.body.privacy,
+                spotifySongID: req.body.spotifySongID
+            }
+
+            if(req.body.mentionID != "") {
+                params[mentionID] = req.body.mentionID;
+            }
+
+
+            const song = new Song(params);
             song.userID = req.user._id;
             song.save().then((song) => {
                 return User.findById(req.user._id)
@@ -190,7 +195,6 @@ module.exports = (app) => {
     });
 
     app.delete('/share', (req, res) => {
-        console.log(req.user);
         if (req.user && req.user._id === req.query.userID) {
 
             Song.deleteOne({

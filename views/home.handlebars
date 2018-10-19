@@ -1,31 +1,41 @@
-{{#if currentUser}}
-    <a href="/edit-profile/{{currentUser._id}}">Edit Profile</a>
-    <a href="/logout">Logout</a>
-{{else}}
-    <a href="/login">Login</a>
-    <a href="/signup">Sign Up</a>
-{{/if}}
+<header>
+    <div class="account">
+        {{#if currentUser}}
+            <a href="/edit-profile/{{currentUser._id}}">Edit Profile</a>
+            <a href="/logout">Logout</a>
+        {{else}}
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        {{/if}}
+    </div>
 
-{{#if currentUser}}
-    <form action="/search" method="GET">
-        <input type="search" autocomplete="off" name="term" class="form-control mr-sm-2" placeholder="Search for Song">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add Song</button>
-    </form>
-{{/if}}
+    <h1 class="greating">What's Playing</h1>
+    <div class="tab-container">
+        <button data-num="1" class="me-tab tab">
+            Me
+        </button>
+        <button data-num="2" class="following-tab tab">
+            Following
+        </button>
+        <button data-num="3" class="global-tab tab">
+            Global
+        </button>
+        <div data-active="2" class="active-tab"></div>
+    </div>
+</header>
+<div class="feed-container">
+    <div class="personal-feed feed">
+        {{> search}}
+        {{> feed songs=personalSongs}}
+    </div>
 
-<h1>What's Playing</h1>
+    <div class="following-feed feed">
+        {{> search}}
+        {{> feed songs=followingSongs}}
+    </div>
 
-<h2>Global</h2>
-<div class="global-feed feed">
-    {{> feed songs=globalSongs}}
-</div>
-<hr>
-<h2>Following</h2>
-<div class="following-feed feed">
-    {{> feed songs=followingSongs}}
-</div>
-<hr>
-<h2>Personal</h2>
-<div class="personal-feed feed">
-    {{> feed songs=personalSongs}}
+    <div class="global-feed feed">
+        {{> search}}
+        {{> feed songs=globalSongs}}
+    </div>
 </div>

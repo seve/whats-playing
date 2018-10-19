@@ -1,0 +1,223 @@
+body {
+    background: rgba(46, 44, 65, 1.0);
+    margin: 0;
+    color: #FFF;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    background-color: #38344F;
+    width: 100%;
+}
+
+.account {
+    align-self: flex-end;
+    margin: 16px 16px 0px 0px;
+    font-size: 1em;
+}
+
+.greating {
+    height: 56px;
+    width: 15em;
+    align-content: center;
+    text-align: center;
+    color: #FFF;
+    font-size: 2.5em;
+    align-self: center;
+    margin: 0;
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tab {
+    width: 33.33%;
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 1.25em;
+    z-index: 2;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    outline: none;
+}
+
+.active-tab {
+    background-color: rgba(46, 44, 65, 1.0);
+    position: absolute;
+    top: 150px;
+    height: 56px;
+    width: 33.33%;
+    border-radius: 6px;
+    z-index: 1;
+    transition: 750ms;
+}
+
+.left-one {
+    -moz-transform: translateX(-33.33vw);
+    -webkit-transform: translateX(-33.33vw);
+    -o-transform: translateX(-33.33vw);
+    -ms-transform: translateX(-33.33vw);
+    transform: translateX(-33.33vw);
+}
+
+.right-one {
+    -moz-transform: translateX(33.33vw);
+    -webkit-transform: translateX(33.33vw);
+    -o-transform: translateX(33.33vw);
+    -ms-transform: translateX(33.33vw);
+    transform: translateX(33.33vw);
+}
+
+.left-two {
+    -moz-transform: translateX(-66.66vw);
+    -webkit-transform: translateX(-66.66vw);
+    -o-transform: translateX(-66.66vw);
+    -ms-transform: translateX(-66.66vw);
+    transform: translateX(-66.66vw);
+}
+
+.right-two {
+    -moz-transform: translateX(66.66vw);
+    -webkit-transform: translateX(66.66vw);
+    -o-transform: translateX(66.66vw);
+    -ms-transform: translateX(66.66vw);
+    transform: translateX(66.66vw);
+}
+
+.feed-container {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 300vw;
+    align-content: center;
+    position: relative;
+    right: 100vw;
+    transition: 750ms;
+    margin-top: 16px;
+}
+
+.search {
+    margin-bottom: 16px;
+}
+
+.search > form {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-field {
+    background: #38344F;
+    width: 200px;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 1em;
+    height: 48px;
+    text-align: center;
+    border: #1d1b29 3px solid;
+    margin: 0;
+    padding: 0;
+}
+.search-btn{
+    background: #1d1b29;
+    border: none;
+    color: #fff;
+    margin: 0;
+    height: 48px;
+    width: 48px;
+    position: relative;
+    right: 4px;
+    border-radius: 3px;
+    font-size: 1.5em;
+
+}
+
+.search-field::placeholder {
+    color: #ffffffab;
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin: auto;
+}
+
+.share {
+    margin: 8px 0px 8px 0px;
+    width: 60%;
+    height: 124px;
+    background-color: #38344F;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    padding: 8px 8px 8px 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-radius: 3px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 70%;
+    margin-left: 32px;
+}
+
+.song-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+}
+
+.song-name {
+    color: #FFF;
+    font-size: 1.8em;
+    margin-bottom: 8px;
+}
+
+.artist {
+    color: #959595;
+    font-size: 1.3em;
+}
+
+.share-message {
+    margin-bottom: 8px;
+    font-size: 1.3em;
+}
+
+.user, .mention {
+    font-weight: 700;
+}
+
+.right-container {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    fill: #f00;
+    width: 24px;
+    padding: 0;
+}

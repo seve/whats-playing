@@ -1,19 +1,23 @@
 {{#unless songs}}
-<h4>Nothing here :( Follow your friends!</h4>
+    <h4>Nothing here :( Follow your friends!</h4>
 {{/unless}}
 {{#each songs}}
     <div class="share">
-        <img src="{{this.album.images.[0].url}}" alt="album art" width="100" height="100">
-        "{{this.name}}" by
-        {{#each this.artists}}
-            {{this.name}}
-        {{/each}}
-        {{#unless ../profile}}
-            Shared by <a href="/user/{{this.user.username}}">{{this.user.username}}</a> to {{#if this.mention}}<a href="/user/{{this.mention.username}}">{{this.mention.username}}</a>{{else}}{{#ifEquals this.privacy 0}}the World{{else}}their Followers{{/ifEquals}}{{/if}}
-        {{/unless}}
-        {{#ifEquals ../currentUser._id this.user._id}}
-            <button class="delete-button" data-spotify-song-id={{this.id}} data-user-id={{this.user._id}} type="button" name="delete">Delete</button>
-        {{/ifEquals}}
-        <hr>
+        <img src="{{this.album.images.[0].url}}" alt="album art" width="124" height="124">
+
+        <div class="details">
+            <div class="song-info">
+                <div class="song-name">{{this.name}}</div>
+                <div class="artist">{{this.artists.[0].name}}</div>
+            </div>
+            <div class="share-message">Shared by <a class="user" href="/user/{{this.user.username}}">{{this.user.username}}</a> to {{#if this.mention}}<a class="mention" href="/user/{{this.mention.username}}">{{this.mention.username}}</a>{{else}}{{#ifEquals this.privacy 0}}<a class="mention">the World</a>{{else}}<a class="mention">their Followers</a>{{/ifEquals}}{{/if}}</div>
+        </div>
+        <div class="right-container">
+            {{#ifEquals ../currentUser._id this.user._id}}
+                <button class="delete-button" data-spotify-song-id={{this.id}} data-user-id={{this.user._id}} type="button" name="delete">
+                    <svg class="delete-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 13h-12v-2h12v2z"/></svg>
+                </button>
+            {{/ifEquals}}
+            </div>
     </div>
 {{/each}}
