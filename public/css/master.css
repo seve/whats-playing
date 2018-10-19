@@ -228,6 +228,7 @@ header {
 
 .user, .mention {
     font-weight: 700;
+    opacity: .8;
 }
 
 .right-container {
