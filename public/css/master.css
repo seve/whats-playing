@@ -347,6 +347,12 @@ header {
     background: #DA3E41;
     font-weight: bolder;
     align-self: center;
+    transition: all .25s;
+}
+
+.submit-btn:hover {
+    box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.5);
+    transform: scale(1.01);
 }
 
 /* Login */
