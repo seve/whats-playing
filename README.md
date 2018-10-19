@@ -178,7 +178,7 @@ _Continue CRUDing Users_
 #### Sprint 4 (Day 4)
 
 * ~Add follow feed~
-* Add mention ability
+* ~Add mention ability~
 * ~Add p2p feed~
 * Add user search
 * Require password for changing username/email
