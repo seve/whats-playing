@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/seve/whats-playing#readme",
   "dependencies": {
-    "bcrypt": "^3.0.1",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "dotenv": "^6.1.0",
