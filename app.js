@@ -43,6 +43,7 @@ app.set('view engine', 'handlebars');
 mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost/whats-playing', { useNewUrlParser: true });
 
 const PORT = process.env.PORT || 3000;
+const HOST = '0.0.0.0';
 
 const song = require('./controllers/song.js');
 const auth = require('./controllers/auth.js');
@@ -54,6 +55,6 @@ song(app);
 auth(app);
 user(app);
 
-app.listen(3000, () => {
+app.listen(3000, host, () => {
     console.log('Listening on port: ' + PORT);
 })
