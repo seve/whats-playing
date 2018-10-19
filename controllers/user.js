@@ -10,15 +10,18 @@ module.exports = (app) => {
                 username: req.params.username
             }).populate('shares')
             .then((user) => {
-                // Remove any private shares
-                if (req.user._id != user._id) {
+                var following = false;
+                // Remove any private shares and check to see if current user is following
+                if (currentUser && currentUser._id != user._id) {
+                    following = user.followers.map(follower=>follower.toString()).includes(currentUser._id);
                     user.shares = user.shares.filter((song) => {
-                        if (song.privacy == 2) {
+                        if (song.privacy == 2 && song.mentionID != currentUser._id) {
                             return false;
                         }
                         return true;
                     })
                 }
+
 
                 const songIDs = user.shares.map(a => a.spotifySongID);
                 const gravatarImg = gravatar.url(user.email, {
@@ -40,6 +43,7 @@ module.exports = (app) => {
                             user: user,
                             avatar: gravatarImg,
                             profile: true,
+                            following
                         });
                     }, (err) => {
                         console.error(err);
@@ -49,6 +53,7 @@ module.exports = (app) => {
                             user: user,
                             avatar: gravatarImg,
                             profile: true,
+                            following,
 
                             helpers: {
                                 ifEquals: function(arg1, arg2, options) {
@@ -63,17 +68,45 @@ module.exports = (app) => {
             });
     });
 
+    app.post('/unfollow', (req, res) => {
+        User.findById(req.user._id)
+            .then((user) => {
+                user.following.pull(req.body.user);
+                user.save().then((user) => {
+                    User.findById(req.body.user)
+                        .then((user2) => {
+                            user2.followers.pull(req.user._id);
+                            user2.save().then((user2) => {
+                                console.log("User:", user._id, "unfollowed user:", req.body.user);
+                                return res.status(200).send({
+                                    user
+                                });
+                            }).catch((err) => {
+                                console.error(err);
+                                return res.status(400).send({
+                                    err: err
+                                });
+                            });
+                        }).catch((err) => {
+                            console.error(err);
+                        });
+                });
+            });
+    });
+
     app.post('/follow', (req, res) => {
-        console.log("Trying to follow:", req.body.user);
         User.findById(req.user._id)
             .then((user) => {
                 user.following.addToSet(req.body.user);
                 user.save().then((user) => {
                     User.findById(req.body.user)
                         .then((user2) => {
-                            user.followers.addToSet(req.user._id);
-                            user.save().then((user) => {
+                            user2.followers.addToSet(req.user._id);
+                            user2.save().then((user2) => {
                                 console.log("User:", user._id, "followed user:", req.body.user);
+                                return res.status(200).send({
+                                    user
+                                });
                             }).catch((err) => {
                                 console.error(err);
                                 return res.status(400).send({

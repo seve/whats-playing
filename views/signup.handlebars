@@ -1,20 +1,29 @@
+<a class="login-back" href="/">Back</a>
 {{#ifEquals action "Sign Up"}}
-    <form class="signup-form" action="/signup" method="post">
+    <form class="signup user-form" action="/signup" method="post">
         {{else}}
-            <form class="edit-form" action="/edit-profile" method="post">
+            <form class="edit user-form" action="/edit-profile" method="post">
 {{/ifEquals}}
-<label for="username">Username</label>
-<input type="text" name="username" value="{{currentUser.username}}">
 
-<label for="name">Name</label>
-<input type="text" name="name" value="{{currentUser.name}}">
+<div class="username">
+    <label for="username">Username</label>
+    <input type="text" name="username" value="{{currentUser.username}}">
+</div>
 
+<div class="name">
+    <label for="name">Name</label>
+    <input disabled type="text" name="name" value="{{currentUser.name}}">
+</div>
 
-<label for="email">Email</label>
-<input type="email" name="email" value="{{currentUser.email}}">
+<div class="email">
+    <label for="email">Email</label>
+    <input type="email" name="email" value="{{currentUser.email}}">
+</div>
 
-<label for="password">Password</label>
-<input type="password" name="password" value="">
+<div class="password">
+    <label for="password">Password</label>
+    <input type="password" name="password" value="">
+</div>
 
-<button type="submit" name="button">{{action}}</button>
+<button class="submit-btn" type="submit" name="button">{{action}}</button>
 </form>

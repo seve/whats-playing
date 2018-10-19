@@ -1,9 +1,15 @@
-<form class="" action="/login" method="post">
-    <label for="username">Username</label>
-    <input type="text" name="username" value="">
+<a class="login-back" href="/">Back</a>
+<form class="login-form" action="/login" method="post">
 
-    <label for="password">Password</label>
-    <input type="password" name="password" value="">
+    <div class="username">
+        <label for="username">Username</label>
+        <input type="text" name="username" value="">
+    </div>
 
-    <button type="submit" name="button">Log In</button>
+    <div class="password">
+        <label for="password">Password</label>
+        <input type="password" name="password" value="">
+    </div>
+
+    <button class="submit-btn" type="submit" name="button">Log In</button>
 </form>

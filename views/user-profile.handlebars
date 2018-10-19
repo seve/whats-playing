@@ -1,12 +1,25 @@
-<h3>{{user.username}}</h3>
-<img src="{{avatar}}" alt="avatar">
-{{#ifEquals currentUser._id user._id}}
-    <a href="/edit-profile/{{user._id}}">Edit Profile</a>
-    {{else}}
-        <button class="follow-button" data-user-id="{{user._id}}" type="button"> Follow</button>
-{{/ifEquals}}
-
-<h1>What {{user.name}} is Playing</h1>
-<div class="feed">
+<header>
+    <div class="top-header">
+        <a class="back" href="/">Back</a>
+        <div class="account">
+            {{#if currentUser}}
+                <a href="/edit-profile/{{currentUser._id}}">Edit Profile</a>
+                •
+                <a href="/logout">Logout</a>
+            {{else}}
+                <a href="/login">Login</a>
+                •
+                <a href="/signup">Sign Up</a>
+            {{/if}}
+        </div>
+    </div>
+    <h1 class="greating">What {{user.username}}'s Playing</h3>
+    <!-- <img src="{{avatar}}" alt="avatar"> -->
+    {{#ifEquals currentUser._id user._id}}
+        {{else}}
+            <button data-following="{{following}}" class="follow-button" data-user-id="{{user._id}}" type="button">Follow</button>
+    {{/ifEquals}}
+</header>
+<div class="feed profile-feed">
     {{> feed}}
 </div>
