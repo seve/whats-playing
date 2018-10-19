@@ -29,14 +29,16 @@ document.querySelector('.tab-container').addEventListener("click", (e) => {
         activeTab.dataset.active = elem.dataset.num;
 
     }
-})
+});
 
-document.querySelector('.feed').addEventListener("click", (e) => {
+document.querySelector('.feed-container').addEventListener("click", (e) => {
     const elem = e.target;
-    if (elem.className.baseVal == "delete-button") {
+    console.log("click");
+    if (elem.className == "delete-button") {
+        console.log("Trying to delete");
         e.preventDefault();
-        const spotifySongID = elem.parentNode.dataset.spotifySongId;
-        const userID = elem.parentNode.dataset.userId;
+        const spotifySongID = elem.dataset.spotifySongId;
+        const userID = elem.dataset.userId;
         axios.delete(`/share`, {
                 params: {
                     spotifySongID: spotifySongID,
@@ -45,7 +47,7 @@ document.querySelector('.feed').addEventListener("click", (e) => {
 
             })
             .then((res) => {
-                elem.parentNode.parentNode.parentNode.style.display = 'none';
+                elem.parentNode.parentNode.style.display = 'none';
             })
             .catch((err) => {
                 console.error(err);

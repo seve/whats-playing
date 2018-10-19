@@ -132,6 +132,7 @@ header {
     border: #1d1b29 3px solid;
     margin: 0;
     padding: 0;
+    outline: none;
 }
 .search-btn{
     background: #1d1b29;
@@ -144,6 +145,7 @@ header {
     right: 4px;
     border-radius: 3px;
     font-size: 1.5em;
+    outline: none;
 
 }
 

@@ -88,7 +88,6 @@ module.exports = (app) => {
             console.log("GLOBAL SONG DATA:", globalSongData, "============================");
             console.log("PERSONAL SONG DATA:", personalSongData, "============================");
             allSongData = followingSongData.concat(globalSongData, personalSongData);
-            console.log(allSongData);
 
             // With the data extract the song IDs
             const songIDs = allSongData.map(a => a.spotifySongID);
