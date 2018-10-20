@@ -195,5 +195,5 @@ _starting the polish_
 * Ask if want to change password, require old password
 * Double check password when signing up
 * Don't allow empty searches
-* Figure out why navigating to profile doesn't work some time
+* ~Figure out why navigating to profile doesn't work some time~
 * More info on landing page
