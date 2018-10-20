@@ -66,7 +66,7 @@ if (feedContainer) {
 
 if (followButton) {
     if (followButton.dataset.following) {
-        followButton.innerText = "Following";
+        followButton.innerText = "Follow";
         followButton.classList.remove("unfollow-button");
         followButton.classList.add("follow-button");
     } else {
