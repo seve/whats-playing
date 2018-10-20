@@ -216,12 +216,14 @@ header {
     font-size: 1.8em;
     margin-bottom: 8px;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .artist {
     color: #959595;
     font-size: 1.3em;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .share-message {
