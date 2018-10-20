@@ -65,7 +65,8 @@ if (feedContainer) {
 }
 
 if (followButton) {
-    if (followButton.dataset.following) {
+    console.log(followButton.dataset.following);
+    if (followButton.dataset.following != true) {
         followButton.innerText = "Follow";
         followButton.classList.remove("unfollow-button");
         followButton.classList.add("follow-button");
