@@ -215,6 +215,7 @@ header {
     color: #FFF;
     font-size: 1.8em;
     margin-bottom: 8px;
+    text-overflow: ellipsis;
 }
 
 .artist {
