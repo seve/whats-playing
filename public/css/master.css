@@ -215,8 +215,10 @@ header {
     color: #FFF;
     font-size: 1.8em;
     margin-bottom: 8px;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    max-width: calc(760px - 132px);
 }
 
 .artist {
