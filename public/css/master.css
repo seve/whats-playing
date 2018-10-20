@@ -134,6 +134,7 @@ header {
 }
 
 .search-field {
+    -webkit-appearance: none;
     background: #38344F;
     width: 232px;
     border: none;
@@ -176,7 +177,7 @@ header {
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    margin: auto;
+    margin: 0 auto 0 auto;
     overflow-x: hidden;
 }
 
