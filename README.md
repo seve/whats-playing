@@ -179,8 +179,8 @@ _Continue CRUDing Users_
 
 * ~Add follow feed~
 * ~Add mention ability~
-* ~Add p2p feed~~
-* ~Make it beautiful
+* ~Add p2p feed~
+* ~Make it beautiful~
     * ~Start working on front end~
     * ~Figure out tab system~
 
