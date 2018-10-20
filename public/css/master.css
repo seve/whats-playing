@@ -220,6 +220,7 @@ header {
 .artist {
     color: #959595;
     font-size: 1.3em;
+    text-overflow: ellipsis;
 }
 
 .share-message {

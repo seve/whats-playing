@@ -69,18 +69,20 @@ if (followButton) {
         followButton.innerText = "Following";
         followButton.classList.remove("unfollow-button");
         followButton.classList.add("follow-button");
+    } else {
+        followButton.innerText = "Unfollow";
+        followButton.classList.remove("follow-button");
+        followButton.classList.add("unfollow-button");
     }
     followButton.addEventListener("click", (e) => {
 
         const user = followButton.dataset.userId;
-        console.log("click", followButton, user);
 
         if (followButton.innerText == "Follow") {
             axios.post(`/follow`, {
                     user: user
                 })
                 .then((res) => {
-                    console.log("Inside");
                     followButton.innerText = "Unfollow";
                     followButton.classList.remove("follow-button");
                     followButton.classList.add("unfollow-button");
