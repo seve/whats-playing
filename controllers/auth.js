@@ -13,7 +13,8 @@ module.exports = (app) => {
         const user = new User(req.body);
         user.save().then((user) => {
             const token = jwt.sign({
-                _id: user._id
+                _id: user._id,
+                username: user.username
             }, process.env.HASH_SECRET, {
                 expiresIn: "60 days"
             });
@@ -83,7 +84,7 @@ module.exports = (app) => {
 
     app.get('/edit-profile/:id', (req, res) => {
         let currentUser = req.user;
-        if (req.params.id == currentUser._id) {
+        if (currentUser || req.params.id == currentUser._id) {
             User.findById(currentUser._id).then((user) => {
                 res.render('signup', {
                     currentUser: user,
