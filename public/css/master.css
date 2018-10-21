@@ -13,6 +13,7 @@ a {
     color: inherit;
     cursor: auto;
     transition: all 250ms;
+    cursor: pointer;
 }
 
 a:hover {
@@ -355,6 +356,7 @@ header {
     font-weight: bolder;
     align-self: center;
     transition: all .25s;
+    cursor: pointer;
 }
 
 .submit-btn:hover {
