@@ -1,5 +1,6 @@
 const User = require('../models/user.js');
 const jwt = require('jsonwebtoken');
+const month = 1000 * 60 * 60 * 24 * 31;
 
 module.exports = (app) => {
     app.get('/signup', (req, res) => {
@@ -19,7 +20,7 @@ module.exports = (app) => {
                 expiresIn: "60 days"
             });
             res.cookie('whatsPlayingToken', token, {
-                maxAge: 900000,
+                maxAge: month,
                 httpOnly: true
             });
             console.log("Create User:", user._id);
@@ -71,7 +72,7 @@ module.exports = (app) => {
                 );
 
                 res.cookie('whatsPlayingToken', token, {
-                    maxAge: 900000,
+                    maxAge: month,
                     httpOnly: true
                 });
                 console.log("User signed in:", user._id);
@@ -143,7 +144,7 @@ module.exports = (app) => {
                         expiresIn: "60 days"
                     });
                     res.cookie('whatsPlayingToken', token, {
-                        maxAge: 900000,
+                        maxAge: month,
                         httpOnly: true
                     });
                     res.redirect('/');
