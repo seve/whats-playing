@@ -15,6 +15,10 @@ a {
     transition: all 250ms;
 }
 
+button {
+    cursor: pointer;
+}
+
 a:hover {
     color: rgba(255, 255, 255, 0.5);
 }
