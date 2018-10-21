@@ -1,7 +1,7 @@
 <div class="search">
     {{#if currentUser}}
         <form action="/search" method="GET">
-            <input type="search" autocomplete="off" name="term" class="search-field" placeholder="Search for a song to share">
+            <input required type="search" autocomplete="off" name="term" class="search-field" placeholder="Search for a song to share">
             <button class="search-btn" type="submit">
                 <span class="btn-text">+</span>
             </button>
