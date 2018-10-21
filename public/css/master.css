@@ -11,7 +11,7 @@ body {
 a {
     text-decoration: inherit;
     color: inherit;
-    cursor: auto;
+    cursor: pointer;
     transition: all 250ms;
 }
 
