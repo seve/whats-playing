@@ -1,5 +1,6 @@
 const User = require('../models/user.js');
 const jwt = require('jsonwebtoken');
+const setTokenCookie = require("../lib/set-token-cookie");
 
 module.exports = (app) => {
     app.get('/signup', (req, res) => {
@@ -49,31 +50,19 @@ module.exports = (app) => {
             username
         }, 'username password').then((user) => {
             if (!user) {
-                return res.status(401).send({
+                return res.render('login', {
                     message: 'Wrong username or password'
                 });
             }
 
             user.comparePassword(password, (err, isMatch) => {
                 if (!isMatch) {
-                    return res.status(401).send({
-                        message: 'Wrong username or password'
+                    return res.render('login', {
+                        message: 'Wrong username or password!'
                     });
                 }
 
-                const token = jwt.sign({
-                        _id: user._id,
-                        username: user.username
-                    },
-                    process.env.HASH_SECRET, {
-                        expiresIn: "60 days"
-                    }
-                );
-
-                res.cookie('whatsPlayingToken', token, {
-                    maxAge: 2592000000, // 30 days in ms
-                    httpOnly: true
-                });
+                setTokenCookie(res, user);
                 console.log("User signed in:", user._id);
                 res.redirect('/');
             });

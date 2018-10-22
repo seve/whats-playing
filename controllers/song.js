@@ -152,7 +152,12 @@ module.exports = (app) => {
                 res.render('songs', {
                     songs: data.body.tracks.items
                 })
-            }, (err) => console.error(err));
+            }, (err) => {
+                console.error(err);
+                res.render('songs', {
+                   error: err
+                });
+            });
     });
 
     app.get('/share/:id', (req, res) => {

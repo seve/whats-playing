@@ -1,6 +1,19 @@
 const feedContainer = document.querySelector('.feed-container') || document.querySelector('.feed');
 const tabContainer = document.querySelector('.tab-container');
 const followButton = document.querySelector('.follow-button');
+const axios = window.axios;
+
+axios.interceptors.response.use(function(response) {
+    return response;
+}, function onHttpError(error) {
+    debugger;
+    if (error.response.status === 401) {
+        // redirect to login
+        window.location = '/login';
+        // swallow the promise
+    }
+    return Promise.reject(error);
+});
 
 if (tabContainer) {
     tabContainer.addEventListener("click", (e) => {

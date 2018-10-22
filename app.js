@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const setTokenCookie = require("./lib/set-token-cookie");
 
 
 const app = express();
@@ -17,12 +18,17 @@ app.use(cookieParser());
 
 
 const checkAuth = (req, res, next) => {
-    if (typeof req.cookies.whatsPlayingToken === 'undefined' || req.cookies.whatsPlayingToken === null) {
+    if (!req.cookies.whatsPlayingToken) {
         req.user = null;
+        if (req.url !== '/login') {
+            return res.redirect('/login');
+        }
     } else {
         const token = req.cookies.whatsPlayingToken;
         const decodedToken = jwt.decode(token, { complete: true }) || {};
         req.user = decodedToken.payload;
+        // refresh token cookie -- user is authorized
+        setTokenCookie(res, user);
     }
 
     next();

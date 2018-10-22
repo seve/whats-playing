@@ -1,15 +1,19 @@
 <a class="login-back" href="/">Back</a>
 <div class="results">
-    {{#each songs}}
-        <a class="song-result" href="/share/{{this.id}}">
-            <img src="{{this.album.images.[0].url}}" alt="album art" width="124" height="124">
+    {{#if error}}
+        Error: {{ error }}
+    {{else}}
+        {{#each songs}}
+            <a class="song-result" href="/share/{{this.id}}">
+                <img src="{{this.album.images.[0].url}}" alt="album art" width="124" height="124">
 
-            <div class="details">
-                <div class="song-info">
-                    <div class="song-name">{{this.name}}</div>
-                    <div class="artist">{{this.artists.[0].name}}</div>
+                <div class="details">
+                    <div class="song-info">
+                        <div class="song-name">{{this.name}}</div>
+                        <div class="artist">{{this.artists.[0].name}}</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-    {{/each}}
+            </a>
+        {{/each}}
+    {{/if}}
 </div>
