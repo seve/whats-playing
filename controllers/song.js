@@ -109,10 +109,31 @@ module.exports = (app) => {
                         // Put songs in respective feeds
                         if (i < followingLength) {
                             followingSongs.push(songs.body.tracks[i]);
+                            followingSongs.sort((songA, songB) => {
+                                const firstField = songA._created;
+                                const secondField = songB._created;
+                                if (firstField > secondField) return 1;
+                                if (firstField < secondField) return -1;
+                                return 0;
+                              });
                         } else if (i < globalLength + followingLength) {
                             globalSongs.push(songs.body.tracks[i]);
+                            globalSongs.sort((songA, songB) => {
+                                const firstField = songA._created;
+                                const secondField = songB._created;
+                                if (firstField > secondField) return 1;
+                                if (firstField < secondField) return -1;
+                                return 0;
+                              });
                         } else {
                             personalSongs.push(songs.body.tracks[i]);
+                            personalSongs.sort((songA, songB) => {
+                                const firstField = songA._created;
+                                const secondField = songB._created;
+                                if (firstField > secondField) return 1;
+                                if (firstField < secondField) return -1;
+                                return 0;
+                              });
                         }
                     }
 
