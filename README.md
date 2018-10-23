@@ -198,3 +198,14 @@ _Transfering this section to issues/projects_
 * Don't allow empty searches
 * ~Figure out why navigating to profile doesn't work some time~
 * More info on landing page
+
+
+# Development
+
+To setup your project locally follow these steps:
+
+1. `npm install`
+2. Install and run mongodb
+3. Create an app on spotify (https://developer.spotify.com)
+4. Create a .env file from the .env-example template with SPOTIFY_SECRET, SPOTIFY_CLIENT_ID and HASH_SECRET keys
+5. `npm start`
