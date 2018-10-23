@@ -186,7 +186,7 @@ header {
 .share {
     margin: 8px 0px 8px 0px;
     width: 45%;
-    max-width: 760px ;
+    max-width: 760px;
     height: 124px;
     background-color: #38344F;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
@@ -198,6 +198,37 @@ header {
     border-radius: 3px;
 }
 
+.share.detailed-view {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+
+    height: 372px;
+    width: 45%;
+    padding: 24px 24px 24px 24px;
+    box-shadow: none;
+    z-index: 10;
+}
+
+.detailed-view>img {
+    height: 248px;
+    width: 248px;
+}
+
+.background-fade {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    color: rgba(0, 0, 0, 0.5);
+}
 .details {
     display: flex;
     flex-direction: column;
@@ -411,7 +442,6 @@ header {
 }
 
 /* SONG SEARCH */
-
 .results {
     width: 100%;
     display: flex;
@@ -437,7 +467,6 @@ header {
 }
 
 /* SHARE INFO */
-
 .share-form-container {
     display: flex;
     flex-direction: column;
@@ -461,7 +490,6 @@ header {
     border-radius: 3px;
 }
 
-
 .share-form {
     margin-top: 16px;
     display: flex;
@@ -475,6 +503,7 @@ header {
     border-radius: 8px;
     align-items: center;
 }
+
 .mention-holder {
     margin-top: 8px;
     margin-bottom: 24px;
@@ -492,21 +521,18 @@ label[for="mentionID"] {
 #mentionID {
     height: 2em;
     width: 80%;
-
 }
 
 /* LANDING PAGE */
-
 .landing-page-container {
     display: flex;
     flex-direction: column;
     width: 75%;
     margin: auto;
     margin-bottom: 64px;
-
 }
 
-.landing-page-container > form {
+.landing-page-container>form {
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -40,8 +40,7 @@ if (tabContainer) {
 
 if (feedContainer) {
     feedContainer.addEventListener("click", (e) => {
-        const elem = e.target;
-        console.log("click");
+        let elem = e.target;
         if (elem.className == "delete-button") {
             console.log("Trying to delete");
             e.preventDefault();
@@ -60,6 +59,17 @@ if (feedContainer) {
                 .catch((err) => {
                     console.error(err);
                 });
+        }
+
+        if (elem.nodeName == "IMG" || elem.classList.contains("song-name") || elem.classList.contains("artist")) {
+            while (!elem.classList.contains("share")) {
+                elem = elem.parentNode;
+            }
+            elem.classList.add("detailed-view");
+
+            var dim = document.createElement('div');
+            dim.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.3;z-index:9;background:#000';
+            document.body.appendChild(dim);
         }
     });
 }
