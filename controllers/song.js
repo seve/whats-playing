@@ -117,8 +117,9 @@ module.exports = (app) => {
                     }
 
                     if(currentUser) {
+                    let reverseSongs = followingSongs.reverse()
                     res.render('home', {
-                        followingSongs,
+                        reverseSongs,
                         globalSongs,
                         personalSongs,
                         currentUser: currentUser,
