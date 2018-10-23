@@ -63,7 +63,8 @@ header {
     padding: 0;
     color: #fff;
     outline: none;
-    transition: all .25s
+    transition: all .25s;
+    cursor: pointer;
 }
 
 .tab:hover {
