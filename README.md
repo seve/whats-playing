@@ -189,7 +189,8 @@ _Continue CRUDing Users_
 _starting the polish_
 * ~Landing Page for non-logged in~
 
-#### Future _Transfering this section to issues/projects_
+#### Future
+_Transfering this section to issues/projects_
 * Add user search
 * Require password for changing username/email
 * Ask if want to change password, require old password
