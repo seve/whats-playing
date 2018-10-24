@@ -1,6 +1,7 @@
 const feedContainer = document.querySelector('.feed-container') || document.querySelector('.feed');
 const tabContainer = document.querySelector('.tab-container');
 const followButton = document.querySelector('.follow-button');
+const dim = document.querySelector('.dim');
 
 if (tabContainer) {
     tabContainer.addEventListener("click", (e) => {
@@ -66,12 +67,17 @@ if (feedContainer) {
                 elem = elem.parentNode;
             }
             elem.classList.add("detailed-view");
-
-            var dim = document.createElement('div');
-            dim.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.3;z-index:9;background:#000';
-            document.body.appendChild(dim);
+            dim.classList.add("active");
         }
     });
+}
+
+if(dim) {
+    dim.addEventListener("click", (e) => {
+        dim.classList.remove("active");
+        document.querySelector(".detailed-view").classList.remove("detailed-view");
+
+    })
 }
 
 if (followButton) {
