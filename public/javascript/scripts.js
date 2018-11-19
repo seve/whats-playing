@@ -59,13 +59,17 @@ if (feedContainer) {
           console.error(err);
         });
     }
-
-    if (elem.nodeName === 'IMG' || elem.classList.contains('song-name') || elem.classList.contains('artist')) {
+    if (elem.nodeName === 'IMG' || elem.classList.contains('song-name') || elem.classList.contains('artist') || elem.classList.contains('share')) {
       while (!elem.classList.contains('share')) {
         elem = elem.parentNode;
       }
-      elem.classList.add('detailed-view');
-      dim.classList.add('active');
+      if (elem.classList.contains('active')) {
+        elem.classList.remove('active');
+        elem.classList.remove('detailed-view')
+      } else {
+        elem.classList.add('detailed-view');
+        elem.classList.add('active');
+      }
     }
   });
 }
