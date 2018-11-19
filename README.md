@@ -24,14 +24,14 @@
 Create a platform for music listeners to share music they enjoy with others. Whether that be friends and family or random strangers.
 
 #### Audience
-Music listeners who use streaming services(primarily Spotify)
+Music listeners who use streaming services (primarily Spotify)
 
 #### Experience
-App will open to a default dashboard of the global feed if not logged in. This will show everyone who publicly shows their music shares.  If the user is logged in, it will show the friends feed. There will be a button the quickly add a song to share.
+The app will open to a default dashboard of the global feed if not logged in. This will show everyone who publicly shows their music shares.  If the user is logged in, it will show the friends feed. There will be a button to add a song to share quickly.
 
 Shared songs will have the ability to listen to a snippet of the song or proceed to the Spotify page for the song.
 
-If the user is clicked on it will bring you to a page showing the user's feed along with a bio and profile picture.  On this screen it will have a button to allow private music shares.
+If the user is clicked on it will bring you to a page showing the user's feed along with a bio and profile picture.  On this screen, it will have a button to allow private music shares.
 
 
 
