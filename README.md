@@ -1,3 +1,4 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/seve/whats-playing)
 # SECP [template by MediBoss](https://github.com/MediBoss/SECP)
 
 ## Table of Contents
